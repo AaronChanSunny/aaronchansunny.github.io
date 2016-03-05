@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Eclipse使用Maven搭建Spring+Struts2+Hibernate工程 | Aaron Chan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eclipse使用Maven搭建Spring+Struts2+Hibernate工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse使用Maven搭建Spring+Struts2+Hibernate工程">
+<meta property="og:url" content="http://yoursite.com/2014/11/21/setup-ssh2-web-project-by-maven/index.html">
+<meta property="og:site_name" content="Aaron Chan's Blog">
+<meta property="og:description" content="Eclipse使用Maven搭建Spring+Struts2+Hibernate工程">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/06.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/07.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/08.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/09.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/10.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/11.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/12.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/13.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/14.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/15.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/16.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/17.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/18.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/19.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/20.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/21.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/22.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/23.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/24.png">
+<meta property="og:image" content="http://yoursite.com/images/2014/11/25.png">
+<meta property="og:updated_time" content="2016-03-05T04:20:20.397Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eclipse使用Maven搭建Spring+Struts2+Hibernate工程">
+<meta name="twitter:description" content="Eclipse使用Maven搭建Spring+Struts2+Hibernate工程">
+<meta name="twitter:image" content="http://yoursite.com/images/2014/11/06.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Aaron Chan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aaron Chan</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="https://gmail.com/aaronchansunny@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Database/" style="font-size: 16.67px;">Database</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/JavaWeb/" style="font-size: 10px;">JavaWeb</a> <a href="/tags/Octopress/" style="font-size: 16.67px;">Octopress</a> <a href="/tags/Server/" style="font-size: 16.67px;">Server</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">努力成为靠谱的Android开发者。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aaron Chan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aaron Chan</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="https://gmail.com/aaronchansunny@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-setup-ssh2-web-project-by-maven" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/21/setup-ssh2-web-project-by-maven/" class="article-date">
+  	<time datetime="2014-11-21T06:46:21.000Z" itemprop="datePublished">2014-11-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Eclipse使用Maven搭建Spring+Struts2+Hibernate工程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>为了熟悉Spring+Struts2+Hibernate工程（SSH2）各个框架的配置，一直想自己手动搭个SSH2。但每次一想到那么多jar包依赖，总提不起勇气，相信这也是很多刚学习JavaWeb的朋友所困扰的问题。对于Maven真是久仰大名，最近拜读了许晓斌前辈《Maven实战》这本书，真是有种相见恨晚的感觉。总之，Maven为我们建立了一套标准，并提供中央仓库让我们能在线获取第三方jar包资源，只要我们遵循这个标准，构建将变得如此轻松。使用Maven构建的最佳实践是使用命令行，但对于Java开发人员，Eclipse等IDE工具虽然在构建上具有先天不足，但在编码上确实能大大提高效率。幸运的是，Eclipse现在已经集成m2eclipse插件，提供Maven工程创建和管理。那就现学现卖吧~就让我们一起在Eclipse下用Maven搭建一个SSH2工程示例。<a id="more"></a></p>
+<h2 id="安装Maven"><a href="#安装Maven" class="headerlink" title="安装Maven"></a>安装Maven</h2><p>安装Maven很简单，首先访问Maven官网，选择最新版本下载，安装过程一路<code>next</code>即可。<br>安装结束后，添加Maven安装目录到系统路径PATH。<br>运行<code>sysdm.cpl</code>打开系统属性：</p>
+<p><img src="/images/2014/11/06.png" alt=""></p>
+<p>选择<strong>高级</strong>选项卡：  </p>
+<p><img src="/images/2014/11/07.png" alt=""></p>
+<p>在<code>PATH</code>中添加Maven安装目录，例如：<code>E:\Program Files\maven-3.2.3\bin</code>。<br>验证Maven是否安装成功：  </p>
+<pre><code>C:\Users\OA&gt;mvn --version
+Apache Maven 3.2.3 (33f8c3e1027c3ddde99d3cdebad2656a31e8fdf4; 2014-08-12T04:58:1
+0+08:00)
+Maven home: E:\Program Files\maven-3.2.3\bin\..
+Java version: 1.8.0_05, vendor: Oracle Corporation
+Java home: E:\Program Files\Java\jdk1.8.0_05\jre
+Default locale: zh_CN, platform encoding: GBK
+OS name: &quot;windows 7&quot;, version: &quot;6.1&quot;, arch: &quot;x86&quot;, family: &quot;dos&quot;
+</code></pre><h2 id="创建Maven工程"><a href="#创建Maven工程" class="headerlink" title="创建Maven工程"></a>创建Maven工程</h2><h3 id="Eclipse版本"><a href="#Eclipse版本" class="headerlink" title="Eclipse版本"></a>Eclipse版本</h3><p>如果Eclipse版本过低，可能还没有集成<code>m2eclipse</code>插件，需要手动安装。例子中使用的Eclipse版本：</p>
+<p><img src="/images/2014/11/08.png" alt=""></p>
+<h3 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h3><p>Luna版Eclipse默认已经集成插件，可以直接创建Maven工程：</p>
+<p><img src="/images/2014/11/09.png" alt=""></p>
+<p><img src="/images/2014/11/10.png" alt=""></p>
+<p>直接Next，在Filter中输入web关键字，找到maven-archetype-webapp：</p>
+<p><img src="/images/2014/11/11.png" alt=""></p>
+<p>继续Next，出现如下界面：</p>
+<p><img src="/images/2014/11/12.png" alt=""></p>
+<p>依次输入Group Id和Artifact Id信息：</p>
+<p><img src="/images/2014/11/13.png" alt=""></p>
+<p>Package会自动补全，点击Finish。</p>
+<h3 id="工程目录结构"><a href="#工程目录结构" class="headerlink" title="工程目录结构"></a>工程目录结构</h3><p>Eclipse创建好的Maven工程目录结构如下：</p>
+<p><img src="/images/2014/11/14.png" alt=""></p>
+<p>额，怎么还有错误，而且目录结构和Maven约定的也不相同。没关系，让我们一步步解决他们。<br>使用Maven自动构建和管理项目有一个前提，目录结构需要和Maven规定的相一致。<br>通过Eclipse生成的Maven工程还差以下目录：<br>1.src/main/java<br>2.src/test/java<br>3.src/test/resources<br>这三个目录，需要我们手动添加，添加后Java Resources目录如下：</p>
+<p><img src="/images/2014/11/15.png" alt=""></p>
+<p>右键工程Properties-&gt;Java Build Path在Source选项卡配置Source folders输出目录：</p>
+<p><img src="/images/2014/11/16.png" alt=""></p>
+<p>现在我们的工程目录就和Maven标准目录相一致了。</p>
+<h3 id="错误解决"><a href="#错误解决" class="headerlink" title="错误解决"></a>错误解决</h3><p>接下来， 让我们看看工程报的错误：</p>
+<p><img src="/images/2014/11/17.png" alt=""></p>
+<p>提示说找不到<code>javax.servlet.http.HttpServlet</code>，也就说缺少Servlet API。按照传统的做法，我们会新建一个lib目录，然后网上找到Servlet API的jar包，还要配置工程属性，将依赖添加进来。而且，每次新增第三方库，都要重复上述步骤，这既无趣又耗时。在依赖库版本更新时，还要同时更新相应的依赖包，这时候特别容易出现版本冲突问题。但是如果有了Maven呢？一切变得如此简单，我们只需在POM中添加如下依赖信息：</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;2.5&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre><p>接下来，把所有事情交给Maven吧。保存POM文件后，Maven会根据依赖信息，先到本地仓库加载依赖包，如果本地没有所需依赖包，再到Maven中央仓库下载。依赖包下载完成后，刚才的错误也就解决了。<br>Luna创建Maven工程默认使用JDK1.5，因此出现以下警告信息：</p>
+<p><img src="/images/2014/11/18.png" alt=""></p>
+<p>右键工程Properties-&gt;Java Compiler将Compiler compliance level更改为1.8：</p>
+<p><img src="/images/2014/11/19.png" alt=""></p>
+<blockquote>
+<p>这里需要根据实际安装的JDK版本进行修改，例子中安装的是JDK1.8。</p>
+</blockquote>
+<p>保存退出后，如下错误信息：</p>
+<p><img src="/images/2014/11/20.png" alt=""></p>
+<p>右键工程Properties-&gt;Project Facets，将Java版本更改为1.8：</p>
+<p><img src="/images/2014/11/21.png" alt=""></p>
+<p>至此，使用Maven搭建JavaWeb工程全部完成。</p>
+<h2 id="配置POM文件"><a href="#配置POM文件" class="headerlink" title="配置POM文件"></a>配置POM文件</h2><p>使用Maven管理SSH2所需要的依赖库，POM文件就是全部，具体可以查看<a href="https://github.com/aaronchansunny/mavendemo/blob/master/pom.xml" target="_blank" rel="external">pom.xml</a>。修改POM文件后保存，m2eclipse插件就开始从Maven中央库下载依赖包，这个过程取决于你的网速，如果依赖包较多，需要的时间比较漫长。如果Maven本地仓库已经有这些依赖包了，Maven将直接加载本地包。那么，要如何找到我们需要的第三方库呢？一般的做法是直接谷歌，例如我们要找spring框架依赖，直接输入关键字<strong>maven repository spring</strong>：</p>
+<p><img src="/images/2014/11/22.png" alt=""></p>
+<p>也可以直接访问：<a href="http://mvnrepository.com/" target="_blank" rel="external">http://mvnrepository.com/</a>进行搜索。</p>
+<h2 id="SSH2配置文件"><a href="#SSH2配置文件" class="headerlink" title="SSH2配置文件"></a>SSH2配置文件</h2><p>到目前为止，Maven已经完成它的依赖包管理使命了，以后要是想新增或更新依赖包直接修改POM文件即可，相对传统管理依赖包的方式简直是一本万利。接下来，进行SSH2各模块的配置，示例程序中已经给出详细注释，这里只简单列出说明。  </p>
+<ul>
+<li>web.xml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot; xmlns:web=&quot;http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</span><br><span class="line">	id=&quot;WebApp_ID&quot; version=&quot;3.0&quot;&gt;</span><br><span class="line">	&lt;display-name&gt;ssh2_test&lt;/display-name&gt;</span><br><span class="line">	&lt;welcome-file-list&gt;</span><br><span class="line">		&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</span><br><span class="line">	&lt;/welcome-file-list&gt;</span><br><span class="line"></span><br><span class="line">	&lt;filter&gt;</span><br><span class="line">		&lt;filter-name&gt;CharsetEncodingFilter&lt;/filter-name&gt;</span><br><span class="line">		&lt;filter-class&gt;com.fish.ssh2.filter.CharsetEncodingFilter&lt;/filter-class&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;encoding&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;GB18030&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">	&lt;/filter&gt;</span><br><span class="line"></span><br><span class="line">	&lt;filter-mapping&gt;</span><br><span class="line">		&lt;filter-name&gt;CharsetEncodingFilter&lt;/filter-name&gt;</span><br><span class="line">		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">	&lt;/filter-mapping&gt;</span><br><span class="line">	&lt;!-- 配置spring资源 --&gt;</span><br><span class="line">	&lt;context-param&gt;</span><br><span class="line">		&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">		&lt;param-value&gt;classpath:config/applicationContext-*.xml&lt;/param-value&gt;</span><br><span class="line">	&lt;/context-param&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 配置CharacterEncoding，设置字符集 --&gt;</span><br><span class="line">	&lt;!-- &lt;filter&gt; &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; </span><br><span class="line">		&lt;init-param&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; </span><br><span class="line">		&lt;/init-param&gt; &lt;init-param&gt; &lt;param-name&gt;forceEncoding&lt;/param-name&gt; &lt;param-value&gt;true&lt;/param-value&gt; </span><br><span class="line">		&lt;/init-param&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt; </span><br><span class="line">		&lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; --&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&lt;!-- 将HibernateSession开关控制配置在Filter，保证一个请求一个session，并对lazy提供支持 --&gt;</span><br><span class="line">	&lt;filter&gt;</span><br><span class="line">		&lt;filter-name&gt;OpenSessionInView&lt;/filter-name&gt;</span><br><span class="line">		&lt;filter-class&gt;org.springframework.orm.hibernate4.support.OpenSessionInViewFilter&lt;/filter-class&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;singleSession&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;true&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line"></span><br><span class="line">	&lt;/filter&gt;</span><br><span class="line"></span><br><span class="line">	&lt;filter-mapping&gt;</span><br><span class="line">		&lt;filter-name&gt;OpenSessionInView&lt;/filter-name&gt;</span><br><span class="line">		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">	&lt;/filter-mapping&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 配置Struts2 --&gt;</span><br><span class="line">	&lt;filter&gt;</span><br><span class="line">		&lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">		&lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</span><br><span class="line">		&lt;init-param&gt;</span><br><span class="line">			&lt;param-name&gt;config&lt;/param-name&gt;</span><br><span class="line">			&lt;param-value&gt;struts-default.xml,struts-plugin.xml,/config/struts.xml&lt;/param-value&gt;</span><br><span class="line">		&lt;/init-param&gt;</span><br><span class="line">	&lt;/filter&gt;</span><br><span class="line"></span><br><span class="line">	&lt;filter-mapping&gt;</span><br><span class="line">		&lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">	&lt;/filter-mapping&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&lt;!-- 配置spring --&gt;</span><br><span class="line">	&lt;listener&gt;</span><br><span class="line">		&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;</span><br><span class="line">	&lt;/listener&gt;</span><br><span class="line"></span><br><span class="line">&lt;/web-app&gt;</span><br></pre></td></tr></table></figure>
+<p>web.xml文件是Web容器加载Web应用的入口，主要包括应用全局变量、Spring监听器、Struts2核心控制器以及设置字符集等信息。  </p>
+<ul>
+<li>applicationContext-beans.xml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span><br><span class="line">		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd</span><br><span class="line">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</span><br><span class="line">		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- Spring管理Struts2的Action --&gt;</span><br><span class="line">	&lt;bean name=&quot;loginAction&quot; class=&quot;com.fish.ssh2.action.LoginAction&quot; scope=&quot;prototype&quot;&gt;&lt;/bean&gt;</span><br><span class="line">	&lt;bean name=&quot;userMainAction&quot; class=&quot;com.opensymphony.xwork2.ActionSupport&quot; scope=&quot;prototype&quot;&gt;&lt;/bean&gt;</span><br><span class="line">	&lt;bean name=&quot;userAction&quot; class=&quot;com.fish.ssh2.action.UserAction&quot; scope=&quot;prototype&quot;&gt;</span><br><span class="line">		&lt;!-- &lt;property name=&quot;userManage&quot; ref=&quot;userManage&quot;&gt;&lt;/property&gt; --&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- Spring管理Struts2的Interceptor --&gt;</span><br><span class="line">	&lt;bean name=&quot;checkLoginInterceptor&quot; class=&quot;com.fish.ssh2.interceptor.CheckLogin&quot; scope=&quot;prototype&quot;&gt;&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&lt;bean name=&quot;userManage&quot; class=&quot;com.fish.ssh2.service.impl.UserManageImpl&quot;&gt;</span><br><span class="line">		&lt;!-- &lt;property name=&quot;userDao&quot; ref=&quot;userDao&quot;&gt;&lt;/property&gt; --&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;bean name=&quot;userDao&quot; class=&quot;com.fish.ssh2.dao.impl.UserDaoImpl&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;sessionFactory&quot; ref=&quot;sessionFactory&quot; /&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>Spring在SSH2框架中就是最大的工厂，所有交给Spring托管的Bean和它们之间的依赖关系都要在applicationContext-beans.xml声明。  </p>
+<ul>
+<li>applicationContext-common.xml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span><br><span class="line">		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd</span><br><span class="line">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd</span><br><span class="line">		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 启用spring注解支持 --&gt;</span><br><span class="line">	&lt;context:annotation-config /&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!--配数据源 --&gt;</span><br><span class="line">	&lt;bean id=&quot;dataSource&quot; class=&quot;org.apache.commons.dbcp.BasicDataSource&quot;</span><br><span class="line">		destroy-method=&quot;close&quot;&gt;</span><br><span class="line">		&lt;!-- 数据库连接驱动 --&gt;</span><br><span class="line">		&lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot; /&gt;</span><br><span class="line">		&lt;!-- 数据库url --&gt;</span><br><span class="line">		&lt;property name=&quot;url&quot;</span><br><span class="line">			value=&quot;jdbc:mysql://localhost/db?characterEncoding=utf-8&amp;amp;autoReconnect=true&quot; /&gt;</span><br><span class="line">		&lt;!-- 数据库用户名 --&gt;</span><br><span class="line">		&lt;property name=&quot;username&quot; value=&quot;root&quot; /&gt;</span><br><span class="line">		&lt;!-- 数据库密码 --&gt;</span><br><span class="line">		&lt;property name=&quot;password&quot; value=&quot;root&quot; /&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">	&lt;bean id=&quot;sessionFactory&quot;</span><br><span class="line">		class=&quot;org.springframework.orm.hibernate4.LocalSessionFactoryBean&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&gt;</span><br><span class="line"></span><br><span class="line">		&lt;property name=&quot;hibernateProperties&quot;&gt;</span><br><span class="line">			&lt;props&gt;</span><br><span class="line">				&lt;!-- 指定数据库方言 --&gt;</span><br><span class="line">				&lt;prop key=&quot;hibernate.dialect&quot;&gt;org.hibernate.dialect.MySQLDialect&lt;/prop&gt;</span><br><span class="line">				&lt;!-- 是否显示Hibernate产生的SQL语句 --&gt;</span><br><span class="line">				&lt;prop key=&quot;hibernate.show_sql&quot;&gt;true&lt;/prop&gt;</span><br><span class="line">				&lt;!-- 启动应用时，是否根据HBM文件创建数据表 --&gt;</span><br><span class="line">				&lt;prop key=&quot;hibernate.hbm2ddl.auto&quot;&gt;update&lt;/prop&gt;</span><br><span class="line">			&lt;/props&gt;</span><br><span class="line">		&lt;/property&gt;</span><br><span class="line">		&lt;!-- 如果使用配置文件 --&gt;</span><br><span class="line">		&lt;!-- &lt;property name=&quot;mappingLocations&quot;&gt; &lt;list&gt; &lt;value&gt;classpath:com/jialin/entity/User.hbm.xml&lt;/value&gt; </span><br><span class="line">			&lt;/list&gt; &lt;/property&gt; --&gt;</span><br><span class="line">		&lt;property name=&quot;annotatedClasses&quot;&gt;</span><br><span class="line">			&lt;list&gt;</span><br><span class="line">				&lt;value&gt;com.fish.ssh2.entity.User&lt;/value&gt;</span><br><span class="line">			&lt;/list&gt;</span><br><span class="line">		&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 配置事务管理器 --&gt;</span><br><span class="line">	&lt;bean id=&quot;transactionManager&quot;</span><br><span class="line">		class=&quot;org.springframework.orm.hibernate4.HibernateTransactionManager&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;sessionFactory&quot; ref=&quot;sessionFactory&quot; /&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 事务的传播特性 --&gt;</span><br><span class="line">	&lt;tx:advice id=&quot;txadvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;</span><br><span class="line">		&lt;tx:attributes&gt;</span><br><span class="line">			&lt;tx:method name=&quot;*&quot; propagation=&quot;REQUIRED&quot; /&gt;</span><br><span class="line">			&lt;!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到 --&gt;</span><br><span class="line">			&lt;!-- &lt;tx:method name=&quot;*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;true&quot; /&gt; --&gt;</span><br><span class="line">		&lt;/tx:attributes&gt;</span><br><span class="line">	&lt;/tx:advice&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 那些类那些方法使用事务 --&gt;</span><br><span class="line">	&lt;aop:config&gt;</span><br><span class="line">		&lt;!-- 只对业务逻辑层实施事务 --&gt;</span><br><span class="line">		&lt;aop:pointcut id=&quot;allManagerMethod&quot;</span><br><span class="line">			expression=&quot;execution(* com.fish.ssh2.service.impl.*.*(..))&quot; /&gt;</span><br><span class="line">		&lt;aop:advisor pointcut-ref=&quot;allManagerMethod&quot; advice-ref=&quot;txadvice&quot; /&gt;</span><br><span class="line">	&lt;/aop:config&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>Spring的基本配置文件，包括配置常量定义、数据源和事务管理等。  </p>
+<ul>
+<li>struts.xml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE struts PUBLIC</span><br><span class="line">    &quot;-//Apache Software Foundation//DTD Struts Configuration 2.0//EN&quot;</span><br><span class="line">    &quot;http://struts.apache.org/dtds/struts-2.0.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;struts&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 将Action的创建交给spring来管理 --&gt;  </span><br><span class="line">    &lt;constant name=&quot;struts.objectFactory&quot; value=&quot;spring&quot; /&gt;  </span><br><span class="line">	</span><br><span class="line">	&lt;!-- 更改struts2请求Action的后缀名，默认为action。若想去掉后缀，设为&quot;,&quot;即可 --&gt;</span><br><span class="line">	&lt;constant name=&quot;struts.action.extension&quot; value=&quot;,&quot;&gt;&lt;/constant&gt;</span><br><span class="line"></span><br><span class="line">	&lt;!-- 公共包 --&gt;</span><br><span class="line">&lt;!-- 	&lt;package name=&quot;abstract_struts&quot; abstract=&quot;true&quot; extends=&quot;struts-default&quot;</span><br><span class="line">		namespace=&quot;/&quot;&gt;</span><br><span class="line">		&lt;interceptors&gt;</span><br><span class="line">			&lt;interceptor name=&quot;checkLogin&quot; class=&quot;com.fish.ssh2.interceptor.CheckLogin&quot; /&gt;</span><br><span class="line">			&lt;interceptor-stack name=&quot;myInterceptor&quot;&gt;</span><br><span class="line">				&lt;interceptor-ref name=&quot;checkLogin&quot; /&gt;</span><br><span class="line">				&lt;interceptor-ref name=&quot;defaultStack&quot; /&gt;</span><br><span class="line">			&lt;/interceptor-stack&gt;</span><br><span class="line">		&lt;/interceptors&gt;</span><br><span class="line"></span><br><span class="line">		&lt;default-interceptor-ref name=&quot;myInterceptor&quot; /&gt;</span><br><span class="line"></span><br><span class="line">		&lt;global-results&gt;</span><br><span class="line">			&lt;result name=&quot;checkLoginFail&quot;&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">		&lt;/global-results&gt;</span><br><span class="line">	&lt;/package&gt; --&gt;</span><br><span class="line"></span><br><span class="line">	&lt;package name=&quot;abstract_struts&quot; abstract=&quot;true&quot; extends=&quot;struts-default&quot;</span><br><span class="line">		namespace=&quot;/&quot;&gt;</span><br><span class="line">		&lt;interceptors&gt;</span><br><span class="line">			&lt;interceptor name=&quot;checkLogin&quot; class=&quot;checkLoginInterceptor&quot; /&gt;</span><br><span class="line">			&lt;interceptor-stack name=&quot;myInterceptor&quot;&gt;</span><br><span class="line">				&lt;interceptor-ref name=&quot;checkLogin&quot; /&gt;</span><br><span class="line">				&lt;interceptor-ref name=&quot;defaultStack&quot; /&gt;</span><br><span class="line">			&lt;/interceptor-stack&gt;</span><br><span class="line">		&lt;/interceptors&gt;</span><br><span class="line"></span><br><span class="line">		&lt;!-- &lt;default-interceptor-ref name=&quot;myInterceptor&quot; /&gt; --&gt;</span><br><span class="line"></span><br><span class="line">		&lt;global-results&gt;</span><br><span class="line">			&lt;result name=&quot;checkLoginFail&quot;&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">		&lt;/global-results&gt;</span><br><span class="line">	&lt;/package&gt;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	&lt;!-- 包含的配置文件 --&gt;</span><br><span class="line">	&lt;include file=&quot;/config/struts-user.xml&quot;&gt;&lt;/include&gt;</span><br><span class="line"></span><br><span class="line">&lt;/struts&gt;</span><br></pre></td></tr></table></figure>
+<p>Struts2核心配置文件。  </p>
+<ul>
+<li>struts-user.xml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">	&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">	&lt;!DOCTYPE struts PUBLIC</span><br><span class="line">	    &quot;-//Apache Software Foundation//DTD Struts Configuration 2.0//EN&quot;</span><br><span class="line">	    &quot;http://struts.apache.org/dtds/struts-2.0.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">	&lt;struts&gt;</span><br><span class="line">	    &lt;!-- 未与spring集成的写法 --&gt;</span><br><span class="line">		&lt;!-- &lt;package name=&quot;loginAction&quot; namespace=&quot;/&quot; extends=&quot;abstract_struts&quot;&gt;</span><br><span class="line">		</span><br><span class="line">			&lt;action name=&quot;login&quot; class=&quot;com.fish.ssh2.action.LoginAction&quot;&gt;</span><br><span class="line">				&lt;result name=&quot;success&quot; type=&quot;redirect&quot;&gt;userMain&lt;/result&gt;</span><br><span class="line">				&lt;result name=&quot;fail&quot;&gt;/fail.jsp&lt;/result&gt;</span><br><span class="line">			&lt;/action&gt;</span><br><span class="line"></span><br><span class="line">			该action只负责跳转，用struts提供的ActionSupport</span><br><span class="line">			&lt;action name=&quot;userMain&quot; class=&quot;com.opensymphony.xwork2.ActionSupport&quot;&gt;</span><br><span class="line">				&lt;result name=&quot;success&quot;&gt;/userMain.jsp&lt;/result&gt;</span><br><span class="line">				&lt;interceptor-ref name=&quot;myInterceptor&quot; /&gt;</span><br><span class="line">			&lt;/action&gt;</span><br><span class="line">		&lt;/package&gt;</span><br><span class="line"></span><br><span class="line">		&lt;package name=&quot;userActions&quot; namespace=&quot;/user&quot; extends=&quot;abstract_struts&quot;&gt;</span><br><span class="line">			&lt;action name=&quot;*_*&quot; class=&quot;com.fish.ssh2.action.UserAction&quot; method=&quot;&#123;1&#125;&quot;&gt;</span><br><span class="line">				&lt;result name=&quot;success&quot; type=&quot;redirect&quot;&gt;/&#123;2&#125;.jsp&lt;/result&gt;</span><br><span class="line">				&lt;result name=&quot;fail&quot;&gt;/fail.jsp&lt;/result&gt;</span><br><span class="line">				&lt;interceptor-ref name=&quot;myInterceptor&quot; /&gt;</span><br><span class="line">			&lt;/action&gt;</span><br><span class="line">		&lt;/package&gt; --&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;!-- 与spring集成的写法，action等交予spring管理 --&gt;</span><br><span class="line">		&lt;package name=&quot;loginAction&quot; namespace=&quot;/&quot; extends=&quot;abstract_struts&quot;&gt;</span><br><span class="line">		</span><br><span class="line">			&lt;action name=&quot;login&quot; class=&quot;loginAction&quot;&gt;</span><br><span class="line">				&lt;result name=&quot;success&quot; type=&quot;redirect&quot;&gt;userMain&lt;/result&gt;</span><br><span class="line">				&lt;result name=&quot;fail&quot;&gt;/fail.jsp&lt;/result&gt;</span><br><span class="line">			&lt;/action&gt;</span><br><span class="line"></span><br><span class="line">			&lt;!-- 该action只负责跳转，用struts提供的ActionSupport --&gt;</span><br><span class="line">			&lt;action name=&quot;userMain&quot; class=&quot;userMainAction&quot;&gt;</span><br><span class="line">				&lt;result name=&quot;success&quot;&gt;/userMain.jsp&lt;/result&gt;</span><br><span class="line">				&lt;interceptor-ref name=&quot;myInterceptor&quot; /&gt;</span><br><span class="line">			&lt;/action&gt;</span><br><span class="line">		&lt;/package&gt;</span><br><span class="line"></span><br><span class="line">		&lt;package name=&quot;userActions&quot; namespace=&quot;/user&quot; extends=&quot;abstract_struts&quot;&gt;</span><br><span class="line">			&lt;action name=&quot;*_*&quot; class=&quot;userAction&quot; method=&quot;&#123;1&#125;&quot;&gt;</span><br><span class="line">				&lt;result name=&quot;success&quot; type=&quot;redirect&quot;&gt;/&#123;2&#125;.jsp&lt;/result&gt;</span><br><span class="line">				&lt;result name=&quot;fail&quot;&gt;/fail.jsp&lt;/result&gt;</span><br><span class="line">				&lt;interceptor-ref name=&quot;myInterceptor&quot; /&gt;</span><br><span class="line">			&lt;/action&gt;</span><br><span class="line">		&lt;/package&gt;</span><br><span class="line"></span><br><span class="line">&lt;/struts&gt;</span><br></pre></td></tr></table></figure>
+<p>该配置文件用来定义业务逻辑Actions。<br>可以发现，这里我们对Spring和Struts2的配置文件都进行拆分处理，这样做可以避免单个配置文件过于臃肿，也方便将来进行扩展。</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>在之前的数据源配置中，我们连接了一个名叫db的数据库：</p>
+<pre><code>&lt;!-- 数据库url --&gt;
+&lt;property name=&quot;url&quot;
+    value=&quot;jdbc:mysql://localhost/db?characterEncoding=utf-8&amp;amp;autoReconnect=true&quot; /&gt;
+&lt;!-- 数据库用户名 --&gt;
+&lt;property name=&quot;username&quot; value=&quot;root&quot; /&gt;
+&lt;!-- 数据库密码 --&gt;
+&lt;property name=&quot;password&quot; value=&quot;root&quot; /&gt;
+</code></pre><p>因此，这里需要创建一个db数据库，并添加p_user表作为新增用户测试。<br>登录MySQL数据库：</p>
+<pre><code>C:\Users\OA&gt; mysql -uroot -proot
+</code></pre><p>执行如下SQL脚本：</p>
+<pre><code>CREATE DATABASE db;
+USE db;
+DROP TABLE IF EXISTS `p_user`;
+CREATE TABLE `p_user` (
+  `id` int(10) unsigned AUTO_INCREMENT NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `age` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+</code></pre><h2 id="示例程序编写"><a href="#示例程序编写" class="headerlink" title="示例程序编写"></a>示例程序编写</h2><p>为了简单起见，这里以一个简单的登录和新增用户作为例子进行说明。MVC分层结构如下：</p>
+<p><img src="/images/2014/11/23.png" alt=""></p>
+<p>示例源码托管在Github：<a href="https://github.com/aaronchansunny/mavendemo" target="_blank" rel="external">https://github.com/aaronchansunny/mavendemo</a></p>
+<h2 id="示例演示"><a href="#示例演示" class="headerlink" title="示例演示"></a>示例演示</h2><h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><p><img src="/images/2014/11/24.png" alt=""></p>
+<p>输入用户名：root；密码：root123。  </p>
+<h3 id="新增用户"><a href="#新增用户" class="headerlink" title="新增用户"></a>新增用户</h3><p><img src="/images/2014/11/25.png" alt=""></p>
+<p>新增新用户：test。  </p>
+<h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><pre><code>mysql&gt; use db;
+mysql&gt; select * from p_user;
++----+------+----------+------+
+| id | name | password | age  |
++----+------+----------+------+
+|  1 | test | 123      |   12 |
++----+------+----------+------+
+1 row in set (0.00 sec)
+</code></pre><p>刚才新增的用户，已经成功保存至数据库。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/28/input-method-switch-key/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Windows下修改输入法切换快捷键
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/20/add-blog-copyright/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">给Octopress每篇博客添加版权信息</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="setup-ssh2-web-project-by-maven" data-title="Eclipse使用Maven搭建Spring+Struts2+Hibernate工程" data-url="http://yoursite.com/2014/11/21/setup-ssh2-web-project-by-maven/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Aaron Chan
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

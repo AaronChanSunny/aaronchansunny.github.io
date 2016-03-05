@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Android 6.0运行时权限完全解析 | Aaron Chan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 引子Android自诞生以来，其安全性一直被人们所诟病。加之，国内安卓App生态环境恶劣，只要是个应用，恨不得申请所有权限。谷歌或许也意识到这个问题，因此在Marshmallow包含了期待已久的运行时权限管理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 6.0运行时权限完全解析">
+<meta property="og:url" content="http://yoursite.com/2016/03/05/AndroidRuntimePermissions/index.html">
+<meta property="og:site_name" content="Aaron Chan's Blog">
+<meta property="og:description" content="1. 引子Android自诞生以来，其安全性一直被人们所诟病。加之，国内安卓App生态环境恶劣，只要是个应用，恨不得申请所有权限。谷歌或许也意识到这个问题，因此在Marshmallow包含了期待已久的运行时权限管理。">
+<meta property="og:image" content="https://github.com/AaronChanSunny/AndroidRuntimePermissions/blob/master/screenshot/clip.gif?raw=true">
+<meta property="og:updated_time" content="2016-03-05T04:48:06.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 6.0运行时权限完全解析">
+<meta name="twitter:description" content="1. 引子Android自诞生以来，其安全性一直被人们所诟病。加之，国内安卓App生态环境恶劣，只要是个应用，恨不得申请所有权限。谷歌或许也意识到这个问题，因此在Marshmallow包含了期待已久的运行时权限管理。">
+<meta name="twitter:image" content="https://github.com/AaronChanSunny/AndroidRuntimePermissions/blob/master/screenshot/clip.gif?raw=true">
+  
+    <link rel="alternative" href="/atom.xml" title="Aaron Chan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aaron Chan</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="https://gmail.com/aaronchansunny@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Database/" style="font-size: 16.67px;">Database</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/JavaWeb/" style="font-size: 10px;">JavaWeb</a> <a href="/tags/Octopress/" style="font-size: 16.67px;">Octopress</a> <a href="/tags/Server/" style="font-size: 16.67px;">Server</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">努力成为靠谱的Android开发者。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aaron Chan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aaron Chan</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="https://gmail.com/aaronchansunny@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-AndroidRuntimePermissions" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/05/AndroidRuntimePermissions/" class="article-date">
+  	<time datetime="2016-03-05T04:32:12.000Z" itemprop="datePublished">2016-03-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 6.0运行时权限完全解析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-引子"><a href="#1-引子" class="headerlink" title="1. 引子"></a>1. 引子</h2><p>Android自诞生以来，其安全性一直被人们所诟病。加之，国内<code>安卓</code>App生态环境恶劣，只要是个应用，恨不得申请所有权限。谷歌或许也意识到这个问题，因此在<a href="https://www.android.com/versions/marshmallow-6-0/" target="_blank" rel="external">Marshmallow</a>包含了期待已久的运行时权限管理。<a id="more"></a></p>
+<h2 id="2-M时代之前"><a href="#2-M时代之前" class="headerlink" title="2. M时代之前"></a>2. M时代之前</h2><p>在Android 6.0之前，一个应用所需要的权限会在安装的时候列出，如果用户想安装这个应用，只能全盘接受。国内应用一般都是权限毒瘤，这一直以来都是安卓用户的痛中之痛。主要体现在两点：</p>
+<ul>
+<li>无法动态授权</li>
+<li>无法知道应用什么时候使用了权限</li>
+</ul>
+<p>如果M之前的代码不加修改，直接跑在M手机上，可能导致应用崩溃。</p>
+<h2 id="3-M时代"><a href="#3-M时代" class="headerlink" title="3. M时代"></a>3. M时代</h2><p>Android中的权限分为两大类：普通权限和危险权限，具体可以参考<a href="http://developer.android.com/intl/zh-cn/guide/topics/security/permissions.html#normal-dangerous" target="_blank" rel="external">开发文档</a>。在M手机上，对于敏感权限，需要在程序运行时进行动态申请。对于非敏感权限，即<a href="http://developer.android.com/guide/topics/security/normal-permissions.html" target="_blank" rel="external">Normal Permissions</a>，和M之前的使用相同。</p>
+<h3 id="3-1-场景拆分"><a href="#3-1-场景拆分" class="headerlink" title="3.1 场景拆分"></a>3.1 场景拆分</h3><p>首先，上效果图：</p>
+<p><img src="https://github.com/AaronChanSunny/AndroidRuntimePermissions/blob/master/screenshot/clip.gif?raw=true" alt="Runtime gif"></p>
+<p>场景拆解：</p>
+<ul>
+<li>应用首次请求权限，系统弹出授权对话框（系统级，不可定制），包含<code>允许</code>和<code>拒绝</code>两个按钮。如果用户点击<code>允许</code>，应用拿到相应权限，如果点击<code>拒绝</code>，则进入下一个场景。</li>
+<li>当上次授权用户点击<code>拒绝</code>，应用再次申请权限时，可以定制一个提示信息给用户，引导用户授权。例如效果图中的对话框，当用户点击<code>确定</code>，应用再次发起授权；若点击<code>取消</code>，授权中断。</li>
+<li>从应用请求第二次授权开始，授权对话框会多出一个<code>不再弹出</code>的复选框。如果用户选中复选框，应用每次请求授权得到的授权结果都是<strong>拒绝</strong>。</li>
+</ul>
+<p>接下来，让我们看看具体的实现细节。</p>
+<h3 id="3-2-请求权限"><a href="#3-2-请求权限" class="headerlink" title="3.2 请求权限"></a>3.2 请求权限</h3><p>这里以最简单的电话权限举例。首先，需要在<code>AndroidManifest.xml</code>中声明<code>android.permission.CALL_PHONE</code>权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.CALL_PHONE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>接下来，在Activity中，使用<a href="http://developer.android.com/reference/android/support/v4/content/ContextCompat.html#checkSelfPermission(android.content.Context, java.lang.String" target="_blank" rel="external">ContextCompat.checkSelfPermission()</a>)检查该权限是否授权，如果没有被授权，使用<a href="http://developer.android.com/reference/android/support/v4/app/ActivityCompat.html#requestPermissions(android.app.Activity, java.lang.String[], int" target="_blank" rel="external">requestPermissions()</a>)进行权限申请。需要为每一个权限指定一个id，当系统返回授权结果时，应用根据id拿到授权结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (ContextCompat.checkSelfPermission(this, android.Manifest.permission</span><br><span class="line">        .CALL_PHONE) != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">    ActivityCompat.requestPermissions(MainActivity.this, new</span><br><span class="line">            String[]&#123;android.Manifest.permission.CALL_PHONE&#125;, REQUEST_PERMISSION_CALL_PHONE);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    Log.d(TAG, &quot;call phone permission granted.&quot;);</span><br><span class="line">    startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-授权回调"><a href="#3-3-授权回调" class="headerlink" title="3.3 授权回调"></a>3.3 授权回调</h3><p>当应用申请权限后，Activity将触发一个回调<a href="http://developer.android.com/reference/android/support/v4/app/ActivityCompat.OnRequestPermissionsResultCallback.html#onRequestPermissionsResult(int, java.lang.String[], int[]" target="_blank" rel="external">onRequestPermissionsResult()</a>)，告诉应用用户的授权结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) &#123;</span><br><span class="line">    if (requestCode == REQUEST_PERMISSION_CALL_PHONE) &#123;</span><br><span class="line">        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">            call10086();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            Toast.makeText(this, &quot;Permission denied.&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    super.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-授权提示"><a href="#3-4-授权提示" class="headerlink" title="3.4 授权提示"></a>3.4 授权提示</h3><p>当应用首次申请权限时，如果用户点击拒绝，下次再申请权限，Android允许你提示用户，你为什么需要这个权限，好引导用户是否授权。这个功能通过<a href="http://developer.android.com/reference/android/support/v4/app/ActivityCompat.html#shouldShowRequestPermissionRationale(android.app.Activity, java.lang.String" target="_blank" rel="external">shouldShowRequestPermissionRationale()</a>)实现。例如，可以弹出一个对话框提示用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest</span><br><span class="line">        .permission.CALL_PHONE)) &#123;</span><br><span class="line">    AlertDialog.Builder builder = new AlertDialog.Builder(this);</span><br><span class="line">    builder.setTitle(&quot;说明&quot;)</span><br><span class="line">            .setMessage(&quot;需要使用电话权限，进行电话测试&quot;)</span><br><span class="line">            .setPositiveButton(&quot;确定&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">                    ActivityCompat.requestPermissions(MainActivity.this, new</span><br><span class="line">                            String[]&#123;android.Manifest.permission.CALL_PHONE&#125;, REQUEST_PERMISSION_CALL_PHONE);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            .setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            .create()</span><br><span class="line">            .show();</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    ActivityCompat.requestPermissions(this, new String[]&#123;android</span><br><span class="line">            .Manifest.permission.CALL_PHONE&#125;, REQUEST_PERMISSION_CALL_PHONE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果用户点击对话框<code>取消</code>按钮，授权结果；如果点击<code>确定</code>按钮，再次申请权限。具体交互可以看效果图。完整代码请戳<a href="AndroidRuntimePermissions/app/src/main/java/com/aaron/androidruntimepermissions/MainActivity.java">这里</a>。</p>
+<h2 id="4-轮子"><a href="#4-轮子" class="headerlink" title="4 轮子"></a>4 轮子</h2><p>通过上面讲解，大家也可以看出，虽然动态权限的编码逻辑简单，涉及的Api也就几个。但由于申请权限的位置和授权结果回调分别在两个地方，给人的感觉就一个字<strong>乱</strong>；并且，如果Activity规模较大、需要申请权限较多时，代码就会变得混乱。针对这些，前辈们封装了许多<a href="https://gist.github.com/dlew/2a21b06ee8715e0f7338" target="_blank" rel="external">动态权限第三方库</a>，这里拿<a href="https://github.com/hotchemi/PermissionsDispatcher" target="_blank" rel="external">PermissionsDispatcher</a>进行说明。PermissionsDispatcher具有如下优点：</p>
+<ul>
+<li>采用注解，代码形式简洁；</li>
+<li>PermissionsDispatcher采用编译时生成代理类，让Activity/Fragment调用。因此，在效率上和官方写法没有区别。</li>
+</ul>
+<h3 id="4-1-配置依赖"><a href="#4-1-配置依赖" class="headerlink" title="4.1 配置依赖"></a>4.1 配置依赖</h3><p>在工程<code>build.gradle</code>文件加入依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>app/build.gradle</code>加入依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;android-apt&apos;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">  compile &apos;com.github.hotchemi:permissionsdispatcher:2.0.7&apos;</span><br><span class="line">  apt &apos;com.github.hotchemi:permissionsdispatcher-processor:2.0.7&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-使用"><a href="#4-2-使用" class="headerlink" title="4.2 使用"></a>4.2 使用</h3><p>给需要动态权限的Activity或者Fragment加上注解<code>RuntimePermissions</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@RuntimePermissions</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>给涉及到动态权限的方法加上注解<code>@NeedsPermission</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RuntimePermissions</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    @NeedsPermission(Manifest.permission.CALL_PHONE)</span><br><span class="line">    void callPhone() &#123;</span><br><span class="line">        // Trigger the calling of a number here</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>重新编译工程</strong>后，将产生一个以<code>PermissionsDispatcher</code>为后缀的代理类，例如这里是<code>MainActivityPermissionsDispatcher</code>。</p>
+<blockquote>
+<p>如果提示找不到<code>MainActivityPermissionsDispatcher</code>类，说明apt代码生成失败，重启Android Studio试试。</p>
+</blockquote>
+<p>代理类生成后，重写权限申请回调，让代理类来处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) &#123;</span><br><span class="line">    super.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">    MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, REQUEST_PERMISSION_CALL_PHONE, grantResults);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-处理授权结果"><a href="#4-3-处理授权结果" class="headerlink" title="4.3 处理授权结果"></a>4.3 处理授权结果</h3><p>应用首次申请权限，用户拒绝，使用<code>@OnPermissionDenied</code>标识的方法将作为回调：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@OnPermissionDenied(Manifest.permission.CALL_PHONE)</span><br><span class="line">void showDeniedForCallPhone() &#123;</span><br><span class="line">    Toast.makeText(this, &quot;未授权&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应用首次申请权限被拒绝，再次申请权限时，给出提示信息，使用<code>@OnShowRationale</code>注解标识：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@OnShowRationale(Manifest.permission.CALL_PHONE)</span><br><span class="line">void showRationaleForCallPhone(final PermissionRequest request) &#123;</span><br><span class="line">    new AlertDialog.Builder(this)</span><br><span class="line">            .setTitle(&quot;提示&quot;)</span><br><span class="line">            .setMessage(&quot;需要授权电话权限&quot;)</span><br><span class="line">            .setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">                    request.cancel();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            .setPositiveButton(&quot;确定&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">                    request.proceed();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            .create()</span><br><span class="line">            .show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应用非首次申请权限时，授权对话框会多出一个复选框<code>不再询问</code>，相应回调方法用<code>@OnNeverAskAgain</code>标识：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@OnNeverAskAgain(Manifest.permission.CALL_PHONE)</span><br><span class="line">void showNeverAskForPhoneCall() &#123;</span><br><span class="line">    Toast.makeText(this, &quot;不再询问&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整代码请戳<a href="https://github.com/AaronChanSunny/AndroidRuntimePermissions/blob/feature/dispatcher/app/src/main/java/com/aaron/androidruntimepermissions/MainActivity.java" target="_blank" rel="external">这里</a>。</p>
+<h3 id="4-4-原理"><a href="#4-4-原理" class="headerlink" title="4.4 原理"></a>4.4 原理</h3><p>PermissionsDispatcher在编译时，会为需要申请运行时权限的每个Activity或者Fragment都生成一个相应的代理类。这个代理类非常简单，这里贴一下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">// This file was generated by PermissionsDispatcher. Do not modify!</span><br><span class="line">package com.aaron.androidruntimepermissions;</span><br><span class="line"></span><br><span class="line">import android.support.v4.app.ActivityCompat;</span><br><span class="line">import java.lang.Override;</span><br><span class="line">import java.lang.String;</span><br><span class="line">import java.lang.ref.WeakReference;</span><br><span class="line">import permissions.dispatcher.PermissionRequest;</span><br><span class="line">import permissions.dispatcher.PermissionUtils;</span><br><span class="line"></span><br><span class="line">final class MainActivityPermissionsDispatcher &#123;</span><br><span class="line">  private static final int REQUEST_CALL10086 = 0;</span><br><span class="line"></span><br><span class="line">  private static final String[] PERMISSION_CALL10086 = new String[] &#123;&quot;android.permission.CALL_PHONE&quot;&#125;;</span><br><span class="line"></span><br><span class="line">  private MainActivityPermissionsDispatcher() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static void call10086WithCheck(MainActivity target) &#123;</span><br><span class="line">    if (PermissionUtils.hasSelfPermissions(target, PERMISSION_CALL10086)) &#123;</span><br><span class="line">      target.call10086();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      if (PermissionUtils.shouldShowRequestPermissionRationale(target, PERMISSION_CALL10086)) &#123;</span><br><span class="line">        target.showRationaleForCallPhone(new Call10086PermissionRequest(target));</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        ActivityCompat.requestPermissions(target, PERMISSION_CALL10086, REQUEST_CALL10086);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static void onRequestPermissionsResult(MainActivity target, int requestCode, int[] grantResults) &#123;</span><br><span class="line">    switch (requestCode) &#123;</span><br><span class="line">      case REQUEST_CALL10086:</span><br><span class="line">      if (PermissionUtils.getTargetSdkVersion(target) &lt; 23 &amp;&amp; !PermissionUtils.hasSelfPermissions(target, PERMISSION_CALL10086)) &#123;</span><br><span class="line">        target.showDeniedForCallPhone();</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      if (PermissionUtils.verifyPermissions(grantResults)) &#123;</span><br><span class="line">        target.call10086();</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        if (!PermissionUtils.shouldShowRequestPermissionRationale(target, PERMISSION_CALL10086)) &#123;</span><br><span class="line">          target.showNeverAskForPhoneCall();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          target.showDeniedForCallPhone();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      break;</span><br><span class="line">      default:</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private static final class Call10086PermissionRequest implements PermissionRequest &#123;</span><br><span class="line">    private final WeakReference&lt;MainActivity&gt; weakTarget;</span><br><span class="line"></span><br><span class="line">    private Call10086PermissionRequest(MainActivity target) &#123;</span><br><span class="line">      this.weakTarget = new WeakReference&lt;&gt;(target);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void proceed() &#123;</span><br><span class="line">      MainActivity target = weakTarget.get();</span><br><span class="line">      if (target == null) return;</span><br><span class="line">      ActivityCompat.requestPermissions(target, PERMISSION_CALL10086, REQUEST_CALL10086);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void cancel() &#123;</span><br><span class="line">      MainActivity target = weakTarget.get();</span><br><span class="line">      if (target == null) return;</span><br><span class="line">      target.showDeniedForCallPhone();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>动态授权，对于一些流氓应用是十分有必要的。但是，有些超级流氓，如果你不授权就直接退出应用，也是无奈，比如某宝…</li>
+<li>如果Activity规模较大、需要申请权限较多时，代码就会变得混乱。</li>
+</ul>
+<p>针对第二点，前辈们封装了不少库，大家可以根据项目需要进行选择。</p>
+<p>完整示例代码，请移步<a href="https://github.com/AaronChanSunny/AndroidRuntimePermissions" target="_blank" rel="external">Github</a>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://developer.android.com/training/permissions/index.html" target="_blank" rel="external">Working with System Permissions</a></li>
+<li><a href="http://developer.android.com/training/permissions/requesting.html" target="_blank" rel="external">Requesting Permissions at Run Time</a></li>
+<li><a href="https://github.com/codepath/android_guides/wiki/Managing-Runtime-Permissions-with-PermissionsDispatcher" target="_blank" rel="external">Managing Runtime Permissions with PermissionsDispatcher</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/05/AndroidLoaders/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android异步加载数据伴侣，TaskLoader与LoaderManager</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="AndroidRuntimePermissions" data-title="Android 6.0运行时权限完全解析" data-url="http://yoursite.com/2016/03/05/AndroidRuntimePermissions/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Aaron Chan
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

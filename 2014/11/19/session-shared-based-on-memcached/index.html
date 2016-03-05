@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Tomcat集群Session共享的轻量级解决方案Memcached | Aaron Chan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Tomcat集群Session共享的轻量级解决方案Memcached">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat集群Session共享的轻量级解决方案Memcached">
+<meta property="og:url" content="http://yoursite.com/2014/11/19/session-shared-based-on-memcached/index.html">
+<meta property="og:site_name" content="Aaron Chan's Blog">
+<meta property="og:description" content="Tomcat集群Session共享的轻量级解决方案Memcached">
+<meta property="og:updated_time" content="2016-03-05T04:20:20.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat集群Session共享的轻量级解决方案Memcached">
+<meta name="twitter:description" content="Tomcat集群Session共享的轻量级解决方案Memcached">
+  
+    <link rel="alternative" href="/atom.xml" title="Aaron Chan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aaron Chan</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="https://gmail.com/aaronchansunny@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Database/" style="font-size: 16.67px;">Database</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/JavaWeb/" style="font-size: 10px;">JavaWeb</a> <a href="/tags/Octopress/" style="font-size: 16.67px;">Octopress</a> <a href="/tags/Server/" style="font-size: 16.67px;">Server</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">努力成为靠谱的Android开发者。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aaron Chan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aaron Chan</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="https://gmail.com/aaronchansunny@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-session-shared-based-on-memcached" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/19/session-shared-based-on-memcached/" class="article-date">
+  	<time datetime="2014-11-19T08:27:56.000Z" itemprop="datePublished">2014-11-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tomcat集群Session共享的轻量级解决方案Memcached
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><h3 id="Session是什么"><a href="#Session是什么" class="headerlink" title="Session是什么"></a>Session是什么</h3><p>用户访问服务器资源主要分成两类，一类是无状态访问，例如请求一张图片。另一类是有状态访问，这种情况下，服务器需要记录追踪用户状态，并根据用户所处状态做出不同响应，典型的例子是购物车。Session的作用就是在Web服务器上保持用户的状态信息。<a id="more"></a></p>
+<h3 id="Tomcat集群为什么需要Session共享"><a href="#Tomcat集群为什么需要Session共享" class="headerlink" title="Tomcat集群为什么需要Session共享"></a>Tomcat集群为什么需要Session共享</h3><p>当客户端访问Tomcat集群时，所有的请求将被Nginx拦截，由Nginx做负载均衡后转发给后台真实Tomcat。按照这个流程就可能出现一个问题，当用户进行页面刷新或跳转时，每次请求将被转发给不同的Tomcat处理，这样就会造成Session的不同步。举个简单的栗子，例如当用户往购物车添加商品时，兴高采烈地准备买单了，当他跳转到付款页面却发现购物车被清空了，这就是Session丢失的典型栗子。因此，我们需要为集群环境做Session同步。</p>
+<h3 id="Session共享方案讨论"><a href="#Session共享方案讨论" class="headerlink" title="Session共享方案讨论"></a>Session共享方案讨论</h3><p>在服务器集群的环境下，共享Session的方案主要分为4类：  </p>
+<ul>
+<li>用户端本地保存Cookie  </li>
+</ul>
+<p>在这种方式下，Web应用会将用户状态写到Cookie并保存到用户本地。但是，如果用户使用的浏览器不支持Cookie或者禁用Cookie，该方案将会失效。并且Cookie能保存的数据是有大小限制的，而且数据暴露给用户本地浏览器，存在安全性问题。 </p>
+<ul>
+<li>采用数据库方式保存Session  </li>
+</ul>
+<p>相对本地Cookie方式，将用户信息保存到服务端数据库解决了数据安全性问题。然而，这么做是有代价的，应用中所有对Session的访问都必须经过数据库，加大数据库负担，导致系统整体性能降低。  </p>
+<ul>
+<li>代理服务器  </li>
+</ul>
+<p>通过代理服务器实现Session共享的思路非常简单，就是Session数据在哪台Tomcat，之后的请求都转发到这台Tomcat。例如Nginx，具体实现只需要修改转发规则为<code>ip_hash</code>即可。但这时候可能存在某一时间段大量用户始终访问某台Tomcat的负载很大，也就失去了负载均衡的意义。  </p>
+<ul>
+<li>搭建缓存服务器  </li>
+</ul>
+<p>这种方案也是应用最普遍的方案，通过搭建缓存服务器，并使用第三方工具接管Tomcat对Session的管理。<br>本文例子采用方案4进行Session管理，使用的缓存服务器是Memcached，并使用memcached-session-manager管理Session。memcached-session-manager（以下简称msm）的使用方法很简单，只需要根据Tomcat版本和序列化方式下载相应jar包，拷贝至Tomcat的lib目录下，最后修改Tomcat配置文件，更换Session管理模块即可。</p>
+<h2 id="原型环境"><a href="#原型环境" class="headerlink" title="原型环境"></a>原型环境</h2><ul>
+<li>1XX.XX.XX.181  </li>
+</ul>
+<p>运行Nginx、Tomcat和Tomcat1  </p>
+<ul>
+<li>1XX.XX.XX.182   </li>
+</ul>
+<p>运行Memcached<br>其中1XX.XX.XX.181主机搭建Tomcat集群环境，1XX.XX.XX.182主机搭建缓存服务器。<br>服务器环境： </p>
+<pre><code># cat /etc/redhat-release 
+CentOS release 6.5 (Final)
+# uname -a
+Linux chenllcentos.localdomain 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre><h2 id="安装Memcached"><a href="#安装Memcached" class="headerlink" title="安装Memcached"></a>安装Memcached</h2><p><a href="http://memcached.org/" target="_blank" rel="external">Memcached</a>是一个高性能的分布式缓存系统，进入<a href="http://memcached.org/downloads" target="_blank" rel="external">下载页面</a>下载最新稳定版本。或者，可以通过<code>wget</code>下载：</p>
+<pre><code># wget http://memcached.org/latest
+</code></pre><p>安装Memcached之前，需要安装libevent-devel依赖：</p>
+<pre><code># yum -y install libevent-devel
+</code></pre><p>解压并安装：</p>
+<pre><code># tar -zxvf memcached-1.x.x.tar.gz
+# cd memcached-1.x.x
+# ./configure &amp;&amp; make &amp;&amp; make test &amp;&amp; sudo make install
+</code></pre><p>启动<code>memcached</code>运行命令：</p>
+<pre><code># /usr/local/memcached-1.4.21/bin/memcached -d -uroot -m 1024 -P /usr/local/memcached-1.4.21/memcached.pid
+</code></pre><p>这里<code>-d</code>参数表示开启守护线程，<code>-u</code>参数指定用户，<code>-m</code>参数指定分配给<code>memcached</code>的内存大小。更多启动参数如下：</p>
+<pre><code>-d 选项是启动一个守护进程
+-m 是分配给Memcache使用的内存数量，单位是MB，这里是1024MB，默认是64MB
+-u 是运行Memcache的用户，这里是root
+-l 是监听的服务器IP地址，默认应该是本机
+-p 是设置Memcache监听的端口，默认是11211，最好是1024以上的端口
+-c 选项是最大运行的并发连接数，默认是1024，这里设置了10240，按照你服务器的负载量来设定
+-P 是设置保存Memcache的pid文件位置
+-h 打印帮助信息
+-v 输出警告和错误信息
+-vv 打印客户端的请求和返回信息
+</code></pre><p>查看端口状态：  </p>
+<pre><code>[root@chenllcentos bin]# netstat -ntlp | grep memcached
+tcp        0      0 0.0.0.0:11211               0.0.0.0:*                   LISTEN      2222/memcached      
+tcp        0      0 :::11211                    :::*                        LISTEN      2222/memcached      
+</code></pre><p>在集群环境中，Tomcat需要访问缓存服务器读取并更新Session信息，因此缓存服务器需要对<code>11211</code>端口放行：</p>
+<pre><code># vi /etc/sysconfig/iptables
+</code></pre><p>添加如下内容：</p>
+<pre><code># 放行Memcached端口
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 11211 -j ACCEPT
+</code></pre><p>重启<code>iptables</code>：</p>
+<pre><code># service iptables restart
+</code></pre><p>停止<code>memcached</code>通过<code>kill</code>命令：</p>
+<pre><code># kill `cat /usr/local/memcached-1.4.21/memcached.pid`
+</code></pre><h2 id="Tomcat配置msm"><a href="#Tomcat配置msm" class="headerlink" title="Tomcat配置msm"></a>Tomcat配置msm</h2><p>msm是托管在GoogleCode的一个开源项目，项目详细介绍可以查阅<a href="https://code.google.com/p/memcached-session-manager/" target="_blank" rel="external">Tomcat high-availability clusters with memcached</a>。</p>
+<h3 id="拷贝jar包"><a href="#拷贝jar包" class="headerlink" title="拷贝jar包"></a>拷贝jar包</h3><p>使用msm之前，需要拷贝一下jars到<code>$TOMCAT_HOME/lib</code>目录：<br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/memcached-session-manager/" target="_blank" rel="external">memcached-session-manager-${version}.jar</a><br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/memcached-session-manager-tc8/" target="_blank" rel="external">memcached-session-manager-tc8-${version}.jar</a>  </p>
+<blockquote>
+<p>该jar包需要和Tomcat版本一致。  </p>
+</blockquote>
+<p><a href="http://repo1.maven.org/maven2/net/spy/spymemcached/2.11.1/spymemcached-2.11.1.jar" target="_blank" rel="external">spymemcached-2.11.1.jar</a><br>这里选择<code>kryo-serializer</code>作为序列化策略，因此还需要添加如下用于实现对象序列化的jar包:<br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/msm-kryo-serializer/" target="_blank" rel="external">msm-kryo-serializer</a><br><a href="http://repo1.maven.org/maven2/de/javakaffee/kryo-serializers/0.11/" target="_blank" rel="external">kryo-serializers-0.11</a><br><a href="http://repo1.maven.org/maven2/com/googlecode/kryo/" target="_blank" rel="external">kryo</a><br><a href="http://repo1.maven.org/maven2/com/googlecode/minlog/" target="_blank" rel="external">minlog</a><br><a href="http://repo1.maven.org/maven2/com/googlecode/reflectasm/" target="_blank" rel="external">reflectasm</a><br><a href="http://repo1.maven.org/maven2/asm/asm/3.2/" target="_blank" rel="external">asm-3.2</a><br>最后，还需要添加<code>javolution-serializer</code>所需jar包：<br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/msm-javolution-serializer/" target="_blank" rel="external">msm-javolution-serializer</a><br><a href="http://memcached-session-manager.googlecode.com/svn/maven/javolution/javolution/5.4.3.1/" target="_blank" rel="external">javolution-5.4.3.1</a>  </p>
+<h3 id="修改Tomcat配置文件"><a href="#修改Tomcat配置文件" class="headerlink" title="修改Tomcat配置文件"></a>修改Tomcat配置文件</h3><p>修改<code>$TOMCAT_HOME/conf/context.xml</code>配置文件，新增如下信息：</p>
+<pre><code>&lt;Context&gt;
+    ...
+    &lt;!-- Memcached管理集群session  --&gt;
+    &lt;Manager className=&quot;de.javakaffee.web.msm.MemcachedBackupSessionManager&quot;
+          memcachedNodes=&quot;n1:1XX.XX.XX.182:11211&quot;
+          sticky=&quot;false&quot;
+          lockingMode=&quot;auto&quot;
+          sessionBackupAsync=&quot;false&quot;
+          sessionBackupTimeout=&quot;1000&quot;
+          transcoderFactoryClass=&quot;de.javakaffee.web.msm.serializer.kryo.KryoTranscoderFactory&quot;  /&gt;
+    ...
+&lt;/Context&gt;
+</code></pre><blockquote>
+<p>几点说明：  </p>
+<ul>
+<li>其中memcachedNodes表示memcached节点信息,多个节点以空隔分开；  </li>
+<li>sticky指定Session共享模式；  </li>
+<li>sessionBackupTimeout的单位为分钟。</li>
+</ul>
+</blockquote>
+<p>分别启动主机1XX.XX.XX.181的Nginx、Tomcat和Tomcat1，启动主机1XX.XX.XX.182的Memcached服务器。</p>
+<h2 id="Session共享测试"><a href="#Session共享测试" class="headerlink" title="Session共享测试"></a>Session共享测试</h2><p>为了测试Nginx集群是否实现session共享，让index.jsp打印Session信息：</p>
+<pre><code>SessionID:&lt;%=session.getId()%&gt;
+</code></pre><p>打开浏览器访问，如果配置正确可得到如下以<code>-n1</code>为结尾的Session串：</p>
+<pre><code>SessionID:2F712A985872A8688138D293F59E493A-n1.tomcat 
+</code></pre><p>刷新浏览器，可以发现Session并不会发生变化，说明通过Memcached实现Session共享有效。如果我们关闭主机1XX.XX.XX.182的缓存服务器呢？</p>
+<pre><code># kill `cat /usr/local/memcached-1.4.21/memcached.pid`
+</code></pre><p>再刷新浏览器看看，将出现类似如下格式的Session串：</p>
+<pre><code>SessionID:E914205336C4FE5A386702F2B6D65063.tomcat 
+</code></pre><blockquote>
+<p>注意：<br>如果刷新后仍然出现以以<code>-n1</code>为结尾的Session串，等待几秒后再试试。这是因为关闭缓存服务器需要时间，如果马上刷新Tomcat集群还是能从缓存服务器取到Session。</p>
+</blockquote>
+<p>可以发现<code>-n1</code>结尾消失了，说明Session共享已经失效，并且反复刷新浏览器，Session的值在不断变化。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/20/add-blog-copyright/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          给Octopress每篇博客添加版权信息
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/19/tomcat-cluster-benchmark-test/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Tomcat集群性能测试与分析</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="session-shared-based-on-memcached" data-title="Tomcat集群Session共享的轻量级解决方案Memcached" data-url="http://yoursite.com/2014/11/19/session-shared-based-on-memcached/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Aaron Chan
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

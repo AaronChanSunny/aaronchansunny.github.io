@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>使用Apache Benchmark测试Web服务器性能 | Aaron Chan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用Apache Benchmark测试Web服务器性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Apache Benchmark测试Web服务器性能">
+<meta property="og:url" content="http://yoursite.com/2014/11/19/apache-benchmark-test/index.html">
+<meta property="og:site_name" content="Aaron Chan's Blog">
+<meta property="og:description" content="使用Apache Benchmark测试Web服务器性能">
+<meta property="og:updated_time" content="2016-03-05T04:20:20.168Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Apache Benchmark测试Web服务器性能">
+<meta name="twitter:description" content="使用Apache Benchmark测试Web服务器性能">
+  
+    <link rel="alternative" href="/atom.xml" title="Aaron Chan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aaron Chan</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="https://gmail.com/aaronchansunny@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Database/" style="font-size: 16.67px;">Database</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/JavaWeb/" style="font-size: 10px;">JavaWeb</a> <a href="/tags/Octopress/" style="font-size: 16.67px;">Octopress</a> <a href="/tags/Server/" style="font-size: 16.67px;">Server</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">努力成为靠谱的Android开发者。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aaron Chan</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aaron Chan</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="https://gmail.com/aaronchansunny@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-apache-benchmark-test" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/19/apache-benchmark-test/" class="article-date">
+  	<time datetime="2014-11-19T02:14:38.000Z" itemprop="datePublished">2014-11-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Apache Benchmark测试Web服务器性能
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>当Web应用正式上线之前，对Web服务器性能的预估是必不可少的。为了让运维人员对服务器的性能瓶颈有基本预估，需要对服务器进行压力测试。<br>工欲善其事，必先利其器。Apache Benchmark（以下简称AB）作为Apache旗下的Http Server性能评测工具，使用方法非常简单，并且在高并发的情况下并不会占用太多系统资源。此外，AB可以直接在Web服务器本地发起测试请求。这点至关重要，因为我们希望测试的是服务器处理时间，而不包含数据的网络传输时间以及用户PC本地的计算时间。<a id="more"></a></p>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><pre><code>[root@chenllcentos ~]# cat /etc/redhat-release 
+CentOS release 6.5 (Final)
+[root@chenllcentos ~]# uname -a
+Linux chenllcentos.localdomain 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre><h2 id="安装AB"><a href="#安装AB" class="headerlink" title="安装AB"></a>安装AB</h2><p>在CentOS下可以通过<code>yum</code>安装AB：</p>
+<pre><code>yum -y install httpd-tools
+</code></pre><h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>AB安装完毕，最简单的使用方法是：</p>
+<pre><code>[root@chenllcentos ~]# ab http://www.baidu.com/
+[root@chenllcentos ~]# ab http://www.baidu.com/
+This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.baidu.com (be patient).....done
+
+
+Server Software:        BWS/1.1
+Server Hostname:        www.baidu.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        82654 bytes
+
+Concurrency Level:      1
+Time taken for tests:   0.242 seconds
+Complete requests:      1
+Failed requests:        0
+Write errors:           0
+Total transferred:      83528 bytes
+HTML transferred:       82654 bytes
+Requests per second:    4.14 [#/sec] (mean)
+Time per request:       241.761 [ms] (mean)
+Time per request:       241.761 [ms] (mean, across all concurrent requests)
+Transfer rate:          337.40 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       15   15   0.0     15      15
+Processing:   215  215   0.0    215     215
+Waiting:       25   25   0.0     25      25
+Total:        230  230   0.0    230     230
+</code></pre><p>上述测试结果参数说明：</p>
+<pre><code>Server Software:        web服务器软件及版本
+Server Hostname:        请求的地址
+Server Port:            请求的端口
+
+Document Path:          请求的页面路径
+Document Length:        页面大小
+
+Concurrency Level:      并发数
+Time taken for tests:   测试总共花费的时间
+Complete requests:      完成的请求数
+Failed requests:        失败的请求数
+Write errors:           写入错误
+Total transferred:      总共传输字节数，包含http的头信息等
+HTML transferred:       html字节数，实际的页面传递字节数
+Requests per second:    每秒处理的请求数，服务器的吞吐量（重要）
+Time per request:       平均数，用户平均请求等待时间
+Time per request:       服务器平均处理时间
+Transfer rate:          平均传输速率（每秒收到的速率）
+</code></pre><h2 id="AB运行参数"><a href="#AB运行参数" class="headerlink" title="AB运行参数"></a>AB运行参数</h2><p>接下来，让我们看看<code>ab</code>详细使用参数，直接输入<code>ab</code>：</p>
+<pre><code>[root@chenllcentos ~]# ab
+ab: wrong number of arguments
+Usage: ab [options] [http[s]://]hostname[:port]/path
+Options are:
+    -n requests     Number of requests to perform
+    -c concurrency  Number of multiple requests to make
+    -t timelimit    Seconds to max. wait for responses
+    -b windowsize   Size of TCP send/receive buffer, in bytes
+    -p postfile     File containing data to POST. Remember also to set -T
+    -u putfile      File containing data to PUT. Remember also to set -T
+    -T content-type Content-type header for POSTing, eg.
+                    &apos;application/x-www-form-urlencoded&apos;
+                    Default is &apos;text/plain&apos;
+    -v verbosity    How much troubleshooting info to print
+    -w              Print out results in HTML tables
+    -i              Use HEAD instead of GET
+    -x attributes   String to insert as table attributes
+    -y attributes   String to insert as tr attributes
+    -z attributes   String to insert as td or th attributes
+    -C attribute    Add cookie, eg. &apos;Apache=1234. (repeatable)
+    -H attribute    Add Arbitrary header line, eg. &apos;Accept-Encoding: gzip&apos;
+                    Inserted after all normal header lines. (repeatable)
+    -A attribute    Add Basic WWW Authentication, the attributes
+                    are a colon separated username and password.
+    -P attribute    Add Basic Proxy Authentication, the attributes
+                    are a colon separated username and password.
+    -X proxy:port   Proxyserver and port number to use
+    -V              Print version number and exit
+    -k              Use HTTP KeepAlive feature
+    -d              Do not show percentiles served table.
+    -S              Do not show confidence estimators and warnings.
+    -g filename     Output collected data to gnuplot format file.
+    -e filename     Output CSV file with percentages served
+    -r              Don&apos;t exit on socket receive errors.
+    -h              Display usage information (this message)
+    -Z ciphersuite  Specify SSL/TLS cipher suite (See openssl ciphers)
+    -f protocol     Specify SSL/TLS protocol (SSL2, SSL3, TLS1, or ALL)
+</code></pre><p>例如现在要模拟10次请求百度首页：</p>
+<pre><code>[root@chenllcentos ~]# ab -n10 http://www.baidu.com/
+</code></pre><p>如果要模拟并发呢？可以新增<code>-c</code>参数。例如模拟10个用户同时并发，一共请求10次百度首页：</p>
+<pre><code>[root@chenllcentos ~]# ab -c10 -n10 http://www.baidu.com/
+</code></pre><p>一个网站的访问高峰期是最考验服务器性能的，因此进行压力测试的关键是评估好高峰期的服务器性能。幸运的是，AB为我们提供了<code>-t</code>参数，用来模拟在给定时间内的并发行为。例如模拟100个用户并发请求，持续时间60秒，可通过如下命令：</p>
+<pre><code>[root@chenllcentos ~]# ab -c100 -t60 http://www.baidu.com/
+</code></pre><p>用户访问页面不单单请求静态页面，更多时候需要传递请求参数。如果是GET请求，直接在url末尾添加请求参数即可；如果是POST请求，可通过<code>-p file</code>的形式向AB传递POST请求参数。例如：</p>
+<pre><code>[root@chenllcentos ~]# ab -p /data/post.txt http://www.yourdomain.com/test.action
+</code></pre><p>其中post.txt包含了POST请求参数：</p>
+<pre><code>[root@chenllcentos ~]# cat /data/post.txt 
+{&quot;phoneNumber&quot;:&quot;18888888888&quot;,&quot;password&quot;:&quot;123456&quot;}
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/19/tomcat-cluster-benchmark-test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Tomcat集群性能测试与分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/18/nginx-tomcat-cluster/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Nginx反向代理Tomcat并实现负载均衡</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="apache-benchmark-test" data-title="使用Apache Benchmark测试Web服务器性能" data-url="http://yoursite.com/2014/11/19/apache-benchmark-test/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Aaron Chan
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
