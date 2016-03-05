@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Linux安装Tomcat并配置多实例 | Aaron Chan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux安装Tomcat并配置多实例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux安装Tomcat并配置多实例">
+<meta property="og:url" content="http://yoursite.com/2014/11/18/tomcat-install-linux/index.html">
+<meta property="og:site_name" content="Aaron Chan's Blog">
+<meta property="og:description" content="Linux安装Tomcat并配置多实例">
+<meta property="og:updated_time" content="2016-03-05T04:20:20.085Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux安装Tomcat并配置多实例">
+<meta name="twitter:description" content="Linux安装Tomcat并配置多实例">
+  
+    <link rel="alternative" href="/atom.xml" title="Aaron Chan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aaron</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="https://gmail.com/#aaronchansunny@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Database/" style="font-size: 16.67px;">Database</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/JavaWeb/" style="font-size: 10px;">JavaWeb</a> <a href="/tags/Octopress/" style="font-size: 16.67px;">Octopress</a> <a href="/tags/Server/" style="font-size: 16.67px;">Server</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">努力成为靠谱的Android开发者。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aaron</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aaron</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="https://gmail.com/#aaronchansunny@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-tomcat-install-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/18/tomcat-install-linux/" class="article-date">
+  	<time datetime="2014-11-18T05:43:26.000Z" itemprop="datePublished">2014-11-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux安装Tomcat并配置多实例
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>当考虑部署JavaWeb项目时，选择Linux服务器是大多数人的选择。Web应用必须在Web容器中运行，目前对于Web容器的选择有很多：Apache、Tomcat、IIS、Nginx和GWS等。其中Tomcat可以说是为JavaWeb应用量身定做的Web容器，又因为其轻巧并且功能强大，往往是中小型项目最好的选择。如果运用代理服务器做Tomcat集群，甚至能轻松搭建出具有高并发性能的大型Web应用。<a id="more"></a></p>
+<h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><p>安装环境：  </p>
+<pre><code>[root@chenllcentos ~]# cat /etc/redhat-release 
+CentOS release 6.5 (Final)
+[root@chenllcentos ~]# uname -a
+Linux chenllcentos.localdomain 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre><p>安装包：<br><a href="http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.tar.gz" target="_blank" rel="external">jdk-8u25-linux-x64</a><br><a href="http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v8.0.15/bin/apache-tomcat-8.0.15.tar.gz" target="_blank" rel="external">apache-tomcat-8.0.15</a></p>
+<p>##具体流程<br>Tomcat运行需要JDK环境支持，因此首先需要安装配置好JDK。</p>
+<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>安装JDK的步骤非常简单，和Windows环境下的过程类似，分成安装和配置环境变量两个步骤。这里采用源码安装的方式进行说明。<br>创建安装目录：</p>
+<pre><code>[root@chenllcentos ~]# mkdir -p /usr/local/java
+</code></pre><p>进入JDK安装包所在目录，解压安装包：</p>
+<pre><code>[root@chenllcentos ~]# cd ~/dev
+[root@chenllcentos dev]# tar zxvf jdk-8u25-linux-x64.tar.gz
+</code></pre><p>复制文件至安装目录：</p>
+<pre><code>[root@chenllcentos dev]# cp -rf jdk1.8.0_25/ /usr/local/java 
+</code></pre><p>接下来需要配置Java环境变量，打开<code>etc/profile</code>文件：</p>
+<pre><code>[root@chenllcentos dev]# vi /etc/profile
+</code></pre><p>在文件末尾添加如下内容：</p>
+<pre><code>export JAVA_HOME=/usr/local/java
+export CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+export PATH=.:$PATH:$JAVA_HOME/bin
+</code></pre><p>重新加载<code>etc/profile</code>文件使其生效：</p>
+<pre><code>[root@chenllcentos dev]# source /etc/profile
+</code></pre><p>验证JDK安装是否成功：</p>
+<pre><code>[root@chenllcentos ~]# java -version
+java version &quot;1.8.0_25&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
+Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+</code></pre><p>至此，JDK安装完毕。<br>成功安装JDK后，可以进行Tomcat安装，这里同样采用源码安装的方式进行说明。</p>
+<h3 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h3><p>Tomcat源码安装和JDK安装过程类似，同样是分成安装和配置环境变量两个步骤。<br>创建Tomcat安装目录：</p>
+<pre><code>[root@chenllcentos ~]# mkdir -p /usr/local/tomcat
+</code></pre><p>进入Tomcat安装包目录，解压安装包：</p>
+<pre><code>[root@chenllcentos ~]# cd ~/dev
+[root@chenllcentos dev]# tar zxvf apache-tomcat-8.0.15.tar.gz
+</code></pre><p>复制文件至Tomcat安装目录：</p>
+<pre><code>[root@chenllcentos dev]# cp -rf apache-tomcat-8.0.15/ /usr/local/tomcat 
+</code></pre><p>接下来同样需要为Tomcat配置环境变量，打开<code>etc/profile</code>文件：</p>
+<pre><code>[root@chenllcentos ~]# vi /etc/profile
+</code></pre><p>在文件末尾添加如下内容：</p>
+<pre><code>export CATALINA_HOME=/usr/local/tomcat
+export CATALINA_BASE=/usr/local/tomcat
+export CATALINA_TMPDIR=/usr/local/tomcat/tmp
+</code></pre><p>重新加载<code>etc/profile</code>文件使其生效：</p>
+<pre><code>[root@chenllcentos ~]# source /etc/profile
+</code></pre><p>至此，Tomcat安装完成。现在我们试试启动Tomcat：</p>
+<pre><code>[root@chenllcentos ~]# /usr/local/tomcat/bin/startup.sh 
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/tmp
+Using JRE_HOME:        /usr/local/jdk1.8.0_25
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+Tomcat started.
+</code></pre><p>根据提示，Tomcat已经成功启动。我们通过<code>ps</code>命令查看进程验证下：</p>
+<pre><code>[root@chenllcentos ~]# ps -ef | grep tomcat
+root     30971     1 54 14:26 pts/0    00:00:31 /usr/local/jdk1.8.0_25/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.endorsed.dirs=/usr/local/tomcat/endorsed -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/usr/local/tomcat/tmp org.apache.catalina.startup.Bootstrap start
+root     31001  8578  0 14:27 pts/0    00:00:00 grep tomcat
+</code></pre><p>可以看出，Tomcat确实已经启动并在后台运行。现在，我们通过<code>netstat</code>查看端口监听状态：</p>
+<pre><code>[root@chenllcentos ~]# netstat -ntlp | grep java
+tcp        0      0 :::8080                     :::*                        LISTEN      30971/java          
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      30971/java          
+tcp        0      0 :::8009                     :::*                        LISTEN      30971/java    
+</code></pre><p>根据结果显示，Tomcat进程（PID:30971）一共监听了3个端口。其中<code>8080</code>端口大家都知道，是Tomcat默认监听端口。但是其他2个端口呢？不着急，让我们看看Tomcat配置文件<code>server.xml</code>是怎么解释的。</p>
+<pre><code>[root@chenllcentos ~]# cat /usr/local/tomcat/conf/server.xml | grep port
+&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+         Define a non-SSL HTTP/1.1 Connector on port 8080
+    &lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+               port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+    &lt;!-- Define a SSL HTTP/1.1 Connector on port 8443
+    &lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;
+    &lt;!-- Define an AJP 1.3 Connector on port 8009 --&gt;
+    &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;
+    &lt;!-- You should set jvmRoute to support load-balancing via AJP ie :
+</code></pre><p>这下就清楚了，原来<code>8005</code>端口是Tomcat关闭端口，而<code>8009</code>是<code>AJP/1.3</code>协议端口。其实，Tomcat单机运行多个Tomcat实例的原理就是通过修改Tomcat监听端口实现的。<br>关闭Tomcat：</p>
+<pre><code>[root@chenllcentos dev]# /usr/local/tomcat/bin/shutdown.sh 
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/tmp
+Using JRE_HOME:        /usr/local/jdk1.8.0_25
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+</code></pre><h2 id="多实例配置"><a href="#多实例配置" class="headerlink" title="多实例配置"></a>多实例配置</h2><p>如果Tomcat所部署的主机硬件性能较高，单个Tomcat实例可能造成机器性能的浪费。因此，可以考虑通过单机运行多个Tomcat实例来达到充分利用服务器物理资源的目的。为Tomcat分配不同的监听端口和启动目录即可实现单机多实例。</p>
+<h3 id="复制安装文件"><a href="#复制安装文件" class="headerlink" title="复制安装文件"></a>复制安装文件</h3><p>首先，我们为新实例创建一个安装目录<code>tomcat1</code>：</p>
+<pre><code>[root@chenllcentos ~]# mkdir -p /usr/local/tomcat1
+</code></pre><p>首先，需要为Tomcat实例复制Tomcat安装文件：</p>
+<pre><code>[root@chenllcentos dev]# cp -rf /usr/local/tomcat /usr/local/tomcat1
+</code></pre><h3 id="修改监听端口"><a href="#修改监听端口" class="headerlink" title="修改监听端口"></a>修改监听端口</h3><p>修改tomcat1的server.xml文件，分别修改<code>SHUTDOWN</code>、<code>HTTP/1.1</code>和<code>AJP/1.3</code>三个端口，修改后如下：</p>
+<pre><code>[root@chenllcentos dev]# cat /usr/local/tomcat1/conf/server.xml | grep port
+&lt;Server port=&quot;8006&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
+         Define a non-SSL HTTP/1.1 Connector on port 8080
+    &lt;Connector port=&quot;8081&quot; protocol=&quot;HTTP/1.1&quot;
+               port=&quot;8081&quot; protocol=&quot;HTTP/1.1&quot;
+    &lt;!-- Define a SSL HTTP/1.1 Connector on port 8443
+    &lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;
+    &lt;!-- Define an AJP 1.3 Connector on port 8009 --&gt;
+    &lt;Connector port=&quot;8010&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;
+    &lt;!-- You should set jvmRoute to support load-balancing via AJP ie :
+</code></pre><p>最后一步，还需要修改启动和关闭脚本的Tomcat环境变量。  </p>
+<h3 id="更新环境变量"><a href="#更新环境变量" class="headerlink" title="更新环境变量"></a>更新环境变量</h3><p>修改Tomcat新实例的<code>catalina.sh</code>脚本：</p>
+<pre><code>[root@chenllcentos ~]# vi /usr/local/tomcat1/bin/catalina.sh
+</code></pre><p>在文件的开头添加如下内容：</p>
+<pre><code>export CATALINA_HOME=/usr/local/tomcat1
+export CATALINA_BASE=/usr/local/tomcat1
+export CATALINA_TMPDIR=/usr/local/tomcat1/tmp
+</code></pre><blockquote>
+<p>注意：此处必须在开头部分添加Tomcat环境变量，否则环境变量无法生效，导致多实例启动失败。</p>
+</blockquote>
+<p>有些朋友可能有疑问了，我们是通过<code>startup.sh</code>和<code>shutdown.sh</code>来启动和关闭Tomcat的，这里为什么在<code>catalina.sh</code>修改环境变量就能生效呢？<br>其实原因很简单，在执行<code>startup.sh</code>和<code>shutdown.sh</code>这两个脚本时，会调用<code>catalina.sh</code>脚本。让我们验证下：</p>
+<pre><code>[root@chenllcentos ~]# cat /usr/local/tomcat1/bin/startup.sh | grep catalina.sh
+EXECUTABLE=catalina.sh
+[root@chenllcentos ~]# cat /usr/local/tomcat1/bin/shutdown.sh | grep catalina.sh
+EXECUTABLE=catalina.sh
+</code></pre><p>所以，我们只需要在<code>catalina.sh</code>脚本中配置Tomcat环境即可。  </p>
+<h3 id="运行多实例"><a href="#运行多实例" class="headerlink" title="运行多实例"></a>运行多实例</h3><p>现在启动我们刚才配置的Tomcat新实例：  </p>
+<pre><code>[root@chenllcentos ~]# /usr/local/tomcat1/bin/startup.sh
+</code></pre><p>查看进程：</p>
+<pre><code>[root@chenllcentos ~]# ps -ef | grep java
+root     31163     1 99 15:21 pts/0    00:00:25 /usr/local/jdk1.8.0_25/bin/java -Djava.util.logging.config.file=/usr/local/tomcat1/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.endorsed.dirs=/usr/local/tomcat1/endorsed -classpath /usr/local/tomcat1/bin/bootstrap.jar:/usr/local/tomcat1/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat1 -Dcatalina.home=/usr/local/tomcat1 -Djava.io.tmpdir=/usr/local/tomcat1/tmp org.apache.catalina.startup.Bootstrap start
+root     31200     1 99 15:21 pts/0    00:00:13 /usr/local/jdk1.8.0_25/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.endorsed.dirs=/usr/local/tomcat/endorsed -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/usr/local/tomcat/tmp org.apache.catalina.startup.Bootstrap start
+root     31224  8578  0 15:21 pts/0    00:00:00 grep java
+</code></pre><p>查看端口状态：</p>
+<pre><code>[root@chenllcentos ~]# netstat -ntlp | grep java
+tcp        0      0 :::8080                     :::*                        LISTEN      31200/java          
+tcp        0      0 :::8081                     :::*                        LISTEN      31163/java          
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      31200/java          
+tcp        0      0 ::ffff:127.0.0.1:8006       :::*                        LISTEN      31163/java          
+tcp        0      0 :::8009                     :::*                        LISTEN      31200/java          
+tcp        0      0 :::8010                     :::*                        LISTEN      31163/java 
+</code></pre><p>单机运行多个Tomcat实例配置成功。</p>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>到这里，Tomcat的安装和部署就全部完成了。此时可以通过浏览器访问Tomcat<a href="http://localhost:8080/" target="_blank" rel="external">默认主页</a>，不出意外都能见到可爱的小猫。那么，如果是通过远程主机的方式访问呢？<br>服务器IP地址；</p>
+<pre><code>[root@chenllcentos ~]# ifconfig
+eth0      Link encap:Ethernet  HWaddr 52:54:00:11:45:2A  
+          inet addr:1XX.XX.XX.181  Bcast:1XX.XX.XX.255  Mask:255.255.255.128
+......
+</code></pre><p>结果发现，通过<a href="http://1XX.XX.XX.181:8080/" target="_blank" rel="external">http://1XX.XX.XX.181:8080/</a>并不能访问。原来出于服务器安全考虑，Linux自己一套防火墙机制，默认不对应用端口放行，防止非法的服务器攻击。因此，如果要使Tomcat能被远程访问，还要设置Linux防火墙，对我们配置的<code>HTTP/1.1</code>端口放行。<br>打开<code>iptables</code>文件：</p>
+<pre><code>[root@chenllcentos ~]# vi /etc/sysconfig/iptables
+</code></pre><p>添加如下内容：</p>
+<pre><code># 放行Tomcat8080端口
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+# 放行Tomcat18081端口
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8081 -j ACCEPT
+</code></pre><p>重启防火墙：</p>
+<pre><code>[root@chenllcentos ~]# service iptables restart
+iptables：将链设置为政策 ACCEPT：filter                    [确定]
+iptables：清除防火墙规则：                                 [确定]
+iptables：正在卸载模块：                                   [确定]
+iptables：应用防火墙规则：                                 [确定]
+</code></pre><p>现在，Tomcat就能支持远程主机访问了。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/18/nginx-tomcat-cluster/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          使用Nginx反向代理Tomcat并实现负载均衡
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/17/delete-remote-repo-file/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git删除远程仓库文件</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="tomcat-install-linux" data-title="Linux安装Tomcat并配置多实例" data-url="http://yoursite.com/2014/11/18/tomcat-install-linux/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Aaron
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Tomcat集群性能测试与分析 | Aaron Chan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Tomcat集群性能测试与分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat集群性能测试与分析">
+<meta property="og:url" content="http://yoursite.com/2014/11/19/tomcat-cluster-benchmark-test/index.html">
+<meta property="og:site_name" content="Aaron Chan's Blog">
+<meta property="og:description" content="Tomcat集群性能测试与分析">
+<meta property="og:updated_time" content="2016-03-05T04:20:20.259Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat集群性能测试与分析">
+<meta name="twitter:description" content="Tomcat集群性能测试与分析">
+  
+    <link rel="alternative" href="/atom.xml" title="Aaron Chan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Aaron</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="https://gmail.com/#aaronchansunny@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Database/" style="font-size: 16.67px;">Database</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/JavaWeb/" style="font-size: 10px;">JavaWeb</a> <a href="/tags/Octopress/" style="font-size: 16.67px;">Octopress</a> <a href="/tags/Server/" style="font-size: 16.67px;">Server</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">努力成为靠谱的Android开发者。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Aaron</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="https://avatars1.githubusercontent.com/u/12109585?v=3&amp;u=c6126479957813d7fd731ad49de97f0631e89978&amp;s=140" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Aaron</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/AaronChanSunny" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="https://gmail.com/#aaronchansunny@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-tomcat-cluster-benchmark-test" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/19/tomcat-cluster-benchmark-test/" class="article-date">
+  	<time datetime="2014-11-19T03:00:47.000Z" itemprop="datePublished">2014-11-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tomcat集群性能测试与分析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>在<a href="http://aaronchansunny.github.io/blog/2014/11/18/nginx-tomcat-cluster/" target="_blank" rel="external">使用Nginx反向代理Tomcat并实现负载均衡</a>博客中，我们使用Nginx搭建Tomcat简单集群，并实现负载均衡。之所有进行Web服务器集群，就是希望能够达到水平扩展的目的。当集群中新增新的Web服务器，理论上整个Web应用的并发量就能得到线性增长。现在以简单的注册为例，来验证我们之前的集群方案是否有效。<a id="more"></a></p>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><p>1.1XX.XX.XX.181<br>运行Nginx、Tomcat和MySQL<br>2.1XX.XX.XX.182<br>运行Tomcat<br>1XX.XX.XX.183<br>运行Tomcat<br>服务器环境：</p>
+<pre><code>[root@chenllcentos ~]# cat /etc/redhat-release 
+CentOS release 6.5 (Final)
+[root@chenllcentos ~]# uname -a
+Linux chenllcentos.localdomain 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+</code></pre><h2 id="部署应用"><a href="#部署应用" class="headerlink" title="部署应用"></a>部署应用</h2><p>将Web项目文件分别拷贝至服务器1XX.XX.XX.181、1XX.XX.XX.182和1XX.XX.XX.183，这里放在<code>/data0/htdocs/www</code>目录下。<br>接下来，设置Tomcat配置文件的虚拟目录如下：</p>
+<pre><code>[root@chenllcentos ~]# cat /usr/local/tomcat/conf/server.xml | grep appBase
+      &lt;Host name=&quot;localhost&quot;  appBase=&quot;/data0/htdocs/www/&quot;
+</code></pre><h2 id="Tomcat集群测试"><a href="#Tomcat集群测试" class="headerlink" title="Tomcat集群测试"></a>Tomcat集群测试</h2><p>现在通过模拟1000用户并发执行注册操作，持续时间30秒来测试服务器集群性能，同时打印系统资源占用信息。测试AB命令如下；</p>
+<pre><code>[root@chenllcentos ~]# ab -c1000 -t30 -p /data/post.txt http://1XX.XX.XX.181/chatMeServer/chatMeAction_registration.rjaction
+</code></pre><h3 id="1台Tomcat性能"><a href="#1台Tomcat性能" class="headerlink" title="1台Tomcat性能"></a>1台Tomcat性能</h3><p>首先只启动1XX.XX.XX.182主机Tomcat一台Web服务器，测试数据如下：</p>
+<pre><code>Concurrency Level:      1000
+Time taken for tests:   30.000 seconds
+Complete requests:      14843
+Failed requests:        0
+Write errors:           0
+Total transferred:      5640340 bytes
+Total POSTed:           3564675
+HTML transferred:       1513986 bytes
+Requests per second:    494.76 [#/sec] (mean)
+Time per request:       2021.163 [ms] (mean)
+Time per request:       2.021 [ms] (mean, across all concurrent requests)
+Transfer rate:          183.60 [Kbytes/sec] received
+                        116.04 kb/s sent
+                        299.64 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    6  20.5      0     102
+Processing:   103 1947 353.9   2008    3379
+Waiting:      102 1947 353.9   2007    3379
+Total:        204 1953 348.6   2008    3455
+</code></pre><p>主机1XX.XX.XX.181系统资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all      5.82      0.00     28.84      0.00      0.26     65.08
+</code></pre><p>主机1XX.XX.XX.182系统资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     37.07      0.00     24.80      0.00      0.27     37.87
+</code></pre><h3 id="2台Tomcat性能"><a href="#2台Tomcat性能" class="headerlink" title="2台Tomcat性能"></a>2台Tomcat性能</h3><p>接下来启动1XX.XX.XX.183主机Tomcat服务器，现在共运行2台Web服务器，测试数据如下；</p>
+<pre><code>Concurrency Level:      1000
+Time taken for tests:   30.000 seconds
+Complete requests:      25312
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      9618560 bytes
+Total POSTed:           6551439
+HTML transferred:       2581824 bytes
+Requests per second:    843.73 [#/sec] (mean)
+Time per request:       1185.220 [ms] (mean)
+Time per request:       1.185 [ms] (mean, across all concurrent requests)
+Transfer rate:          313.10 [Kbytes/sec] received
+                        213.26 kb/s sent
+                        526.36 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3  15.4      0     113
+Processing:     5 1141 1139.4    650    3879
+Waiting:        5 1140 1139.4    650    3878
+Total:          6 1144 1140.2    703    3916
+</code></pre><p>主机1XX.XX.XX.181系统（运行Nginx和Mysql）资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     10.05      0.00     47.09      0.00      0.26     42.59
+</code></pre><p>主机1XX.XX.XX.182（运行Tomcat）系统资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     36.22      0.00     23.24      0.00      0.27     40.27
+</code></pre><p>主机1XX.XX.XX.183系统（运行Tomcat）资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     52.86      0.00     22.92      0.00      0.26     23.96
+</code></pre><p>###3台Tomcat性能<br>如果主机1XX.XX.XX.183再开一个Tomcat实例呢？测试数据：</p>
+<pre><code>Concurrency Level:      1000
+Time taken for tests:   30.000 seconds
+Complete requests:      42718
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      16243430 bytes
+Total POSTed:           10885284
+HTML transferred:       4357236 bytes
+Requests per second:    1423.93 [#/sec] (mean)
+Time per request:       702.283 [ms] (mean)
+Time per request:       0.702 [ms] (mean, across all concurrent requests)
+Transfer rate:          528.76 [Kbytes/sec] received
+                        354.34 kb/s sent
+                        883.09 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2  11.6      0     109
+Processing:     3  685 831.2    431    7105
+Waiting:        2  685 831.2    430    7105
+Total:          3  687 834.8    434    7201
+</code></pre><p>主机1XX.XX.XX.181系统（运行Nginx和Mysql）资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     10.05      0.00     47.09      0.00      0.26     42.59
+</code></pre><p>主机1XX.XX.XX.182（运行Tomcat）系统资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     36.22      0.00     23.24      0.00      0.27     40.27
+</code></pre><p>主机1XX.XX.XX.183系统（运行Tomcat和Tomcat1）资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     66.00      0.00     33.50      0.00      0.00      0.50 ---&gt;CPU达到瓶颈
+</code></pre><p>可以发现，此时主机1XX.XX.XX.183的CPU达到瓶颈。从AB测试结果<code>Complete requests</code>和<code>Time per request</code>看，虽然多运行了一个Tomcat实例，但由于1XX.XX.XX.183主机CPU已经达到瓶颈，整个集群的性能并没有成线性增长。<br>如果将第三台Tomcat搭建在1XX.XX.XX.181主机呢？测试数据：</p>
+<pre><code>Concurrency Level:      1000
+Time taken for tests:   30.018 seconds
+Complete requests:      33026
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      12622460 bytes
+Total POSTed:           8389557
+HTML transferred:       3388134 bytes
+Requests per second:    1100.21 [#/sec] (mean)
+Time per request:       908.914 [ms] (mean)
+Time per request:       0.909 [ms] (mean, across all concurrent requests)
+Transfer rate:          410.64 [Kbytes/sec] received
+                        272.94 kb/s sent
+                        683.58 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0  151 159.1    116    1359
+Processing:     3  746 887.7    452    7192
+Waiting:        3  694 887.5    385    7183
+Total:          3  896 888.1    665    7257
+</code></pre><p>主机1XX.XX.XX.181系统（运行Nginx、Tomcat和Mysql）资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     56.64      0.00     43.11      0.00      0.25      0.00 ---&gt;CPU达到瓶颈
+</code></pre><p>主机1XX.XX.XX.182（运行Tomcat）系统资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     29.54      0.00     15.18      0.00      0.27     55.01
+</code></pre><p>主机1XX.XX.XX.183系统（运行Tomcat）资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     25.74      0.00     17.69      0.00      0.27     56.30
+</code></pre><p>通过<code>sar</code>数据可以知道，此时主机1XX.XX.XX.181的CPU已达到瓶颈，性能也没有成比例增长。  </p>
+<h3 id="测试小结"><a href="#测试小结" class="headerlink" title="测试小结"></a>测试小结</h3><p>通过上述测试结果可以看出，只要物理主机资源还未达到瓶颈，<code>Complete requests</code>和<code>Time per request</code>都能得到近乎线性的增长，因此可以证明我们的集群方案是有效的。</p>
+<h2 id="使用Tomcat集群提高并发数"><a href="#使用Tomcat集群提高并发数" class="headerlink" title="使用Tomcat集群提高并发数"></a>使用Tomcat集群提高并发数</h2><p>使用AB测试工具模拟1万用户同时并发注册的情况，持续时间30秒：</p>
+<pre><code>[root@chenllcentos ~]# ab -c10000 -t30 -k -p /data/post.txt http://1XX.XX.XX.181/chatMeServer/chatMeAction_registration.rjaction
+</code></pre><h3 id="1台Tomcat性能-1"><a href="#1台Tomcat性能-1" class="headerlink" title="1台Tomcat性能"></a>1台Tomcat性能</h3><p>1台Tomcat的测试数据：</p>
+<pre><code>Concurrency Level:      10000
+Time taken for tests:   30.000 seconds
+Complete requests:      13791
+Failed requests:        11 ---&gt;出现请求响应失败
+   (Connect: 0, Receive: 0, Length: 11, Exceptions: 0)
+Write errors:           0
+Non-2xx responses:      11
+Keep-Alive requests:    11
+Total transferred:      5240008 bytes
+Total POSTed:           5923710
+HTML transferred:       1407452 bytes
+Requests per second:    459.70 [#/sec] (mean)
+Time per request:       21753.394 [ms] (mean)
+Time per request:       2.175 [ms] (mean, across all concurrent requests)
+Transfer rate:          170.57 [Kbytes/sec] received
+                        192.83 kb/s sent
+                        363.40 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0  408 340.2    388    1030
+Processing:     1 13053 5949.5  14975   26485
+Waiting:        1 13052 5949.7  14975   26485
+Total:          2 13460 5715.0  15317   26765
+</code></pre><p>主机1XX.XX.XX.181系统（运行Nginx和Mysql）资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all      7.20      0.00     27.20      0.00      0.00     65.60
+</code></pre><p>主机1XX.XX.XX.182（运行Tomcat）系统资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     36.31      0.00     25.75      0.00      0.00     37.94
+</code></pre><p>可以看出，此时Tomcat出现11次请求响应失败。我们往集群新增一台Tomcat，看是否能解决响应失败问题。  </p>
+<h3 id="2台Tomcat性能-1"><a href="#2台Tomcat性能-1" class="headerlink" title="2台Tomcat性能"></a>2台Tomcat性能</h3><p>2台Tomcat的测试数据：</p>
+<pre><code>Concurrency Level:      10000
+Time taken for tests:   30.002 seconds
+Complete requests:      24053 ---&gt;给定时间处理的请求量成比例增长，说明负载均衡有效
+Failed requests:        0 ---&gt;解决了请求失败问题
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      9143180 bytes
+Total POSTed:           8478201
+HTML transferred:       2454222 bytes
+Requests per second:    801.71 [#/sec] (mean)
+Time per request:       12473.334 [ms] (mean)
+Time per request:       1.247 [ms] (mean, across all concurrent requests)
+Transfer rate:          297.61 [Kbytes/sec] received
+                        275.96 kb/s sent
+                        573.57 kb/s total
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0  244 317.4      8    1004
+Processing:   274 9617 2913.4  10995   16630
+Waiting:      268 9616 2913.8  10994   16629
+Total:        688 9861 2674.2  11020   16931
+</code></pre><p>主机1XX.XX.XX.181系统（运行Nginx和Mysql）资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     20.82      0.00     49.36      0.51      0.51     28.79
+</code></pre><p>主机1XX.XX.XX.182（运行Tomcat）系统资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     36.96      0.00     22.55      0.00      0.00     40.49
+</code></pre><p>主机1XX.XX.XX.183（运行Tomcat）系统资源占用：</p>
+<pre><code>[root@chenllcentos ~]# sar -u 1
+CPU     %user     %nice   %system   %iowait    %steal     %idle
+all     55.73      0.00     21.88      0.00      0.00     22.40
+</code></pre><p>此时不仅<code>Complete requests</code>成比例增长，同时也解决了服务器响应请求失败的问题，说明Tomcat集群有效。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/19/session-shared-based-on-memcached/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Tomcat集群Session共享的轻量级解决方案Memcached
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/19/apache-benchmark-test/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Apache Benchmark测试Web服务器性能</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="tomcat-cluster-benchmark-test" data-title="Tomcat集群性能测试与分析" data-url="http://yoursite.com/2014/11/19/tomcat-cluster-benchmark-test/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Aaron
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
