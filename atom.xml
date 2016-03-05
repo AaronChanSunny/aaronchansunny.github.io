@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-05T05:47:11.172Z</updated>
+  <updated>2016-03-05T10:02:35.206Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Support23.2，带我们进入矢量图时代</title>
+    <link href="http://yoursite.com/2016/03/05/TasteAndroidSupport23-2/"/>
+    <id>http://yoursite.com/2016/03/05/TasteAndroidSupport23-2/</id>
+    <published>2016-03-05T10:02:07.000Z</published>
+    <updated>2016-03-05T10:02:35.206Z</updated>
+    
+    <content type="html">&lt;p&gt;##　1.背景&lt;br&gt;2月底，谷歌发布了&lt;a href=&quot;http://android-developers.blogspot.jp/2016/02/android-support-library-232.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Support Library 23.2&lt;/a&gt;。最新的支持库特性包括以下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Support Vector Drawables and Animated Vector Drawables&lt;/li&gt;
+&lt;li&gt;AppCompat DayNight theme&lt;/li&gt;
+&lt;li&gt;Design Support Library: Bottom Sheets&lt;/li&gt;
+&lt;li&gt;RecyclerView &lt;code&gt;WRAP_CONTENT&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接下来，让我们一步步建立示例代码库。&lt;/p&gt;
+&lt;h2 id=&quot;2-全民矢量图时代&quot;&gt;&lt;a href=&quot;#2-全民矢量图时代&quot; class=&quot;headerlink&quot; title=&quot;2.全民矢量图时代&quot;&gt;&lt;/a&gt;2.全民矢量图时代&lt;/h2&gt;&lt;p&gt;传统Android开发中，为了适配不同屏幕分辨率的手机，我们需要建立多个&lt;code&gt;drawable&lt;/code&gt;目录，分别存放一套图标资源文件，使得App在不同手机上都达到最优的现实效果。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/AaronChanSunny/TasteAndroidSupport23.2/blob/master/screenshot/2.PNG?raw=true&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果引入矢量图，我们只需要定义一个文件就能适配所有屏幕，简直简单粗暴。我们先通过一个简单例子，体验一下矢量图的魅力。&lt;/p&gt;
+&lt;h3 id=&quot;2-1新建工程&quot;&gt;&lt;a href=&quot;#2-1新建工程&quot; class=&quot;headerlink&quot; title=&quot;2.1新建工程&quot;&gt;&lt;/a&gt;2.1新建工程&lt;/h3&gt;&lt;p&gt;使用Android Studio创建一个新工程。为了引入最新支持库，需要在配置&lt;code&gt;app/build.gradle&lt;/code&gt;：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// Gradle Plugin 1.5  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; android &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   defaultConfig &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     generatedDensities = []  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  // This is handled for you by the 2.0+ Gradle Plugin  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  aaptOptions &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    additionalParameters &amp;quot;--no-version-vectors&amp;quot;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果你使用的是Android Studio2.0，则配置：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// Gradle Plugin 2.0+  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; android &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   defaultConfig &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     vectorDrawables.useSupportLibrary = true  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;2-2布局文件&quot;&gt;&lt;a href=&quot;#2-2布局文件&quot; class=&quot;headerlink&quot; title=&quot;2.2布局文件&quot;&gt;&lt;/a&gt;2.2布局文件&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;RelativeLayout&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xmlns:app=&amp;quot;http://schemas.android.com/apk/res-auto&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    xmlns:tools=&amp;quot;http://schemas.android.com/tools&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:layout_width=&amp;quot;match_parent&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:layout_height=&amp;quot;match_parent&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:paddingBottom=&amp;quot;@dimen/activity_vertical_margin&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:paddingLeft=&amp;quot;@dimen/activity_horizontal_margin&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:paddingRight=&amp;quot;@dimen/activity_horizontal_margin&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    android:paddingTop=&amp;quot;@dimen/activity_vertical_margin&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    app:layout_behavior=&amp;quot;@string/appbar_scrolling_view_behavior&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    tools:context=&amp;quot;com.aaron.tasteandroidsupport.SimpleCompareActivity&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    tools:showIn=&amp;quot;@layout/activity_simple_compare&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;ImageView&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:id=&amp;quot;@+id/search&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:src=&amp;quot;@drawable/ic_search_black_48dp&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:layout_width=&amp;quot;200dp&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:layout_height=&amp;quot;200dp&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;ImageView&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:id=&amp;quot;@+id/vector_search&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:layout_below=&amp;quot;@id/search&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        app:srcCompat=&amp;quot;@drawable/ic_search_48dp&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:layout_width=&amp;quot;200dp&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        android:layout_height=&amp;quot;200dp&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/RelativeLayout&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于矢量图，指定&lt;code&gt;src&lt;/code&gt;需要使用&lt;code&gt;app:srcCompat&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;2-3效果对比&quot;&gt;&lt;a href=&quot;#2-3效果对比&quot; class=&quot;headerlink&quot; title=&quot;2.3效果对比&quot;&gt;&lt;/a&gt;2.3效果对比&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://github.com/AaronChanSunny/TasteAndroidSupport23.2/blob/master/screenshot/1.PNG?raw=true&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以看出，即使将ImageView的尺寸放大，矢量图也不会是真，这就是矢量图的意义。更重要的是，我们不再需要对图标做5套资源文件了，不仅仅减少了工作量，更重要是能减少最终发布时APK大小。&lt;/p&gt;
+&lt;h3 id=&quot;2-4彩蛋&quot;&gt;&lt;a href=&quot;#2-4彩蛋&quot; class=&quot;headerlink&quot; title=&quot;2.4彩蛋&quot;&gt;&lt;/a&gt;2.4彩蛋&lt;/h3&gt;&lt;p&gt;Android Studio已经集成Material Design所有图标，这里说明下使用方法：&lt;/p&gt;
+&lt;p&gt;选中&lt;code&gt;res&lt;/code&gt;目录，鼠标右键&lt;code&gt;New&lt;/code&gt;，选择&lt;code&gt;Vector Assert&lt;/code&gt;，即可打开Vector Studio：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/AaronChanSunny/TasteAndroidSupport23.2/blob/master/screenshot/3.PNG?raw=true&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##　1.背景&lt;br&gt;2月底，谷歌发布了&lt;a href=&quot;http://android-developers.blogspot.jp/2016/02/android-support-library-232.html&quot; target=&quot;_blank&quot; rel=&quot;externa
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>Android 6.0运行时权限完全解析</title>
@@ -1746,39 +1790,6 @@ $ git config --global --unset https.proxy
     
     
       <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ST使用Markdown Preview插件实现语法高亮和预览</title>
-    <link href="http://yoursite.com/2014/11/16/sublime-plugin-markdown-preview/"/>
-    <id>http://yoursite.com/2014/11/16/sublime-plugin-markdown-preview/</id>
-    <published>2014-11-15T16:10:21.000Z</published>
-    <updated>2016-03-05T05:47:11.158Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;关于文本编辑器，一直热衷于Sublime Text（以下简称ST）。不仅仅因为它清爽的界面，更离不开它强大的插件支持。最近用Octpress搭建个人博客，开始学习Markdown标记语言。理所当然，马上想到用ST完成日常Markdown编写。随便打开一个Markdown文件，发现ST并不支持语法高亮。网上搜了下，找到了Markdown Preview，也就是本文的主角。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;##Markdown Preview安装&lt;br&gt;使用Package Control安装Markdown Preview非常简单。打开ST，按下组合键打开控制台:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Control + `
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;注意：第二个组合键并不是单引号，而是Tab键的上一个按键。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;出现控制台后，输入：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import urllib2,os; pf=&amp;apos;Package Control.sublime-package&amp;apos;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), &amp;apos;wb&amp;apos; ).write( urllib2.urlopen( &amp;apos;http://sublime.wbond.net/&amp;apos; +pf.replace( &amp;apos; &amp;apos;,&amp;apos;%20&amp;apos; )).read()); print( &amp;apos;Please restart Sublime Text to finish installation&amp;apos;)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当看到代码最后一行提示的时候说明安装成功。&lt;br&gt;此时重启ST，可在&lt;code&gt;Preferences -&amp;gt; Package Settings&lt;/code&gt;看到&lt;code&gt;Package Control&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;快捷键&quot;&gt;&lt;a href=&quot;#快捷键&quot; class=&quot;headerlink&quot; title=&quot;快捷键&quot;&gt;&lt;/a&gt;快捷键&lt;/h2&gt;&lt;p&gt;ST支持自定义快捷键，Markdown Preview默认没有快捷键。我们可以为Preview in Browser功能设置快捷键。打开&lt;code&gt;Preferences -&amp;gt; Key Bindings User&lt;/code&gt;，在中括号内添加以下代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{ &amp;quot;keys&amp;quot;: [&amp;quot;alt+m&amp;quot;], &amp;quot;command&amp;quot;: &amp;quot;markdown_preview&amp;quot;, &amp;quot;args&amp;quot;: { &amp;quot;target&amp;quot;: &amp;quot;browser&amp;quot;} }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此处设置的快捷键为&lt;code&gt;&amp;quot;alt+m&amp;quot;&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;设置语法高亮和mathjax支持&quot;&gt;&lt;a href=&quot;#设置语法高亮和mathjax支持&quot; class=&quot;headerlink&quot; title=&quot;设置语法高亮和mathjax支持&quot;&gt;&lt;/a&gt;设置语法高亮和mathjax支持&lt;/h2&gt;&lt;p&gt;打开&lt;code&gt;Preferences -&amp;gt;Package Settings-&amp;gt;Markdown Preview-&amp;gt;Setting Default&lt;/code&gt;：&lt;br&gt;查找&lt;code&gt;&amp;quot;enable_mathjax&amp;quot;&lt;/code&gt;和&lt;code&gt;&amp;quot;enable_highlight&amp;quot;&lt;/code&gt;，将其值更改为&lt;code&gt;true&lt;/code&gt;。&lt;br&gt;现在，开始尽情享受在ST下编写Markdown吧。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      Sublime Text使用Markdown Preview插件实现语法高亮和预览
-    
-    </summary>
-    
-    
-      <category term="Tools" scheme="http://yoursite.com/tags/Tools/"/>
     
   </entry>
   
