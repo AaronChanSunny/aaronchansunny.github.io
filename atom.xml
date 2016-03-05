@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-05T04:48:06.198Z</updated>
+  <updated>2016-03-05T05:47:11.172Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/03/05/AndroidRuntimePermissions/"/>
     <id>http://yoursite.com/2016/03/05/AndroidRuntimePermissions/</id>
     <published>2016-03-05T04:32:12.000Z</published>
-    <updated>2016-03-05T04:48:06.198Z</updated>
+    <updated>2016-03-05T05:47:11.172Z</updated>
     
     <content type="html">&lt;h2 id=&quot;1-引子&quot;&gt;&lt;a href=&quot;#1-引子&quot; class=&quot;headerlink&quot; title=&quot;1. 引子&quot;&gt;&lt;/a&gt;1. 引子&lt;/h2&gt;&lt;p&gt;Android自诞生以来，其安全性一直被人们所诟病。加之，国内&lt;code&gt;安卓&lt;/code&gt;App生态环境恶劣，只要是个应用，恨不得申请所有权限。谷歌或许也意识到这个问题，因此在&lt;a href=&quot;https://www.android.com/versions/marshmallow-6-0/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Marshmallow&lt;/a&gt;包含了期待已久的运行时权限管理。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;2-M时代之前&quot;&gt;&lt;a href=&quot;#2-M时代之前&quot; class=&quot;headerlink&quot; title=&quot;2. M时代之前&quot;&gt;&lt;/a&gt;2. M时代之前&lt;/h2&gt;&lt;p&gt;在Android 6.0之前，一个应用所需要的权限会在安装的时候列出，如果用户想安装这个应用，只能全盘接受。国内应用一般都是权限毒瘤，这一直以来都是安卓用户的痛中之痛。主要体现在两点：&lt;/p&gt;
@@ -105,7 +105,7 @@
     <link href="http://yoursite.com/2016/03/05/AndroidLoaders/"/>
     <id>http://yoursite.com/2016/03/05/AndroidLoaders/</id>
     <published>2016-03-05T04:18:05.000Z</published>
-    <updated>2016-03-05T04:53:19.414Z</updated>
+    <updated>2016-03-05T05:47:11.171Z</updated>
     
     <content type="html">&lt;h2 id=&quot;1-前面的话&quot;&gt;&lt;a href=&quot;#1-前面的话&quot; class=&quot;headerlink&quot; title=&quot;1 前面的话&quot;&gt;&lt;/a&gt;1 前面的话&lt;/h2&gt;&lt;p&gt;App大部分的业务场景是这样：从服务端拉取数据，返回结果后进行展示。Android中，每一个界面都是由Activity或者Fragment托管的，通常情况下，业务的逻辑和生命周期强耦合。很多时候，我们需要决定什么时候拉取数据，什么时候使用缓存数据。例如：&lt;/p&gt;
 &lt;ul&gt;
@@ -182,7 +182,7 @@
     <link href="http://yoursite.com/2015/11/18/android-support-max-jdk-version/"/>
     <id>http://yoursite.com/2015/11/18/android-support-max-jdk-version/</id>
     <published>2015-11-18T09:02:07.000Z</published>
-    <updated>2016-03-05T04:20:20.514Z</updated>
+    <updated>2016-03-05T05:47:11.171Z</updated>
     
     <content type="html">&lt;p&gt;最近尝试在Android中引入MVP架构，其中Model作为一个独立的Android Studio模块，是以Java工程的形式存在的。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;单独编译运行这个工程并没有问题，但最后在app中引入时却一直报如下错误：&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;UNEXPECTED TOP-LEVEL EXCEPTION:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;java.lang.RuntimeException: Exception parsing classes&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.processClass(Main.java:752)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.processFileBytes(Main.java:718)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.access$1200(Main.java:85)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main$FileBytesConsumer.processFileBytes(Main.java:1645)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.cf.direct.ClassPathOpener.processArchive(ClassPathOpener.java:284)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.cf.direct.ClassPathOpener.processOne(ClassPathOpener.java:166)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.cf.direct.ClassPathOpener.process(ClassPathOpener.java:144)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.processOne(Main.java:672)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.processAllFiles(Main.java:574)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.runMonoDex(Main.java:311)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.run(Main.java:277)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.main(Main.java:245)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.Main.main(Main.java:106)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Caused by: com.android.dx.cf.iface.ParseException: bad class file magic (cafebabe) or version (0034.0000)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.cf.direct.DirectClassFile.parse0(DirectClassFile.java:472)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.cf.direct.DirectClassFile.parse(DirectClassFile.java:406)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.cf.direct.DirectClassFile.parseToInterfacesIfNecessary(DirectClassFile.java:388)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.cf.direct.DirectClassFile.getMagic(DirectClassFile.java:251)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.parseClass(Main.java:764)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.access$1500(Main.java:85)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main$ClassParserTask.call(Main.java:1684)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	at com.android.dx.command.dexer.Main.processClass(Main.java:749)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	... 12 more&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1 error; aborting&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Error:Execution failed for task &amp;apos;:app:preDexDebug&amp;apos;.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process &amp;apos;command &amp;apos;/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin/java&amp;apos;&amp;apos; finished with non-zero exit value 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -207,7 +207,7 @@
     <link href="http://yoursite.com/2015/11/16/android-coding-standard/"/>
     <id>http://yoursite.com/2015/11/16/android-coding-standard/</id>
     <published>2015-11-16T03:30:52.000Z</published>
-    <updated>2016-03-05T04:20:20.597Z</updated>
+    <updated>2016-03-05T05:47:11.170Z</updated>
     
     <content type="html">&lt;p&gt;这里只是个人习惯的归档，并不是官方规范。包括两大部分：Java代码规范和资源文件命名规范。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Java-Part&quot;&gt;&lt;a href=&quot;#Java-Part&quot; class=&quot;headerlink&quot; title=&quot;Java Part&quot;&gt;&lt;/a&gt;Java Part&lt;/h2&gt;&lt;h3 id=&quot;类成员变量&quot;&gt;&lt;a href=&quot;#类成员变量&quot; class=&quot;headerlink&quot; title=&quot;类成员变量&quot;&gt;&lt;/a&gt;类成员变量&lt;/h3&gt;&lt;p&gt;统一以’m’作为前缀来命名类成员变量。当然有唯一例外，那就是POJO或者JavaBean。&lt;/p&gt;
@@ -231,7 +231,7 @@
     <link href="http://yoursite.com/2015/11/12/problem-install-rvm/"/>
     <id>http://yoursite.com/2015/11/12/problem-install-rvm/</id>
     <published>2015-11-12T03:51:45.000Z</published>
-    <updated>2016-03-05T04:20:20.650Z</updated>
+    <updated>2016-03-05T05:47:11.169Z</updated>
     
     <content type="html">&lt;p&gt;之前都是在Windows平台搭建Octopress，这次在Mac上搭建，安装依赖项&lt;code&gt;Ruby 1.9.3&lt;/code&gt;遇到一个问题。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rvm install 1.9.3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -256,7 +256,7 @@
     <link href="http://yoursite.com/2015/11/12/jni-notes/"/>
     <id>http://yoursite.com/2015/11/12/jni-notes/</id>
     <published>2015-11-12T02:51:45.000Z</published>
-    <updated>2016-03-05T04:20:20.726Z</updated>
+    <updated>2016-03-05T05:47:11.169Z</updated>
     
     <content type="html">&lt;p&gt;最近开发App涉及到许多图像处理操作，使用的OpenCV开源库，考虑到性能问题，决定使用JNI层开发。之前一直停留在应用层，并没有JNI层开发的经验，心里总感觉没谱，趁这次机会好好理理，权当纪录。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;工具&quot;&gt;&lt;a href=&quot;#工具&quot; class=&quot;headerlink&quot; title=&quot;工具&quot;&gt;&lt;/a&gt;工具&lt;/h2&gt;&lt;p&gt;工欲善其事，必先利其器。开发Android的话，首推&lt;a href=&quot;http://developer.android.com/sdk/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Android Studio&lt;/a&gt;，强大的智能提示和优秀的Gradle构建系统，能最大程度提高你的生产力；另外，既然涉及到JNI层开发，还需要下载&lt;a href=&quot;http://developer.android.com/ndk/downloads/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NDK工具集&lt;/a&gt;。&lt;/p&gt;
@@ -330,7 +330,7 @@
     <link href="http://yoursite.com/2015/05/13/launch-a-dialog-in-android-service/"/>
     <id>http://yoursite.com/2015/05/13/launch-a-dialog-in-android-service/</id>
     <published>2015-05-13T01:45:11.000Z</published>
-    <updated>2016-03-05T04:20:20.767Z</updated>
+    <updated>2016-03-05T05:47:11.168Z</updated>
     
     <content type="html">&lt;p&gt;最近碰到一个需求，需要在其他应用前台运行时弹出自己应用的对话框，通知用户信息。当然，这么做是完全和Android设计模式相悖的。通常情况下，当应用处于后台时，要以通知栏的形式和用户交互。但是，具体要如何实现了？让我们一起试试。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;直接使用AlertDialog并显示&quot;&gt;&lt;a href=&quot;#直接使用AlertDialog并显示&quot; class=&quot;headerlink&quot; title=&quot;直接使用AlertDialog并显示&quot;&gt;&lt;/a&gt;直接使用AlertDialog并显示&lt;/h2&gt;&lt;p&gt;最初的想法很简单，我在Service中直接&lt;code&gt;create&lt;/code&gt;一个对话框，然后调用&lt;code&gt;show&lt;/code&gt;方法不就行了吗？代码如下：&lt;/p&gt;
@@ -380,7 +380,7 @@
     <link href="http://yoursite.com/2015/05/11/setup-octopress-on-new-computer-enviroment/"/>
     <id>http://yoursite.com/2015/05/11/setup-octopress-on-new-computer-enviroment/</id>
     <published>2015-05-11T02:41:21.000Z</published>
-    <updated>2016-03-05T04:20:20.818Z</updated>
+    <updated>2016-03-05T05:47:11.167Z</updated>
     
     <content type="html">&lt;p&gt;通过&lt;a href=&quot;http://aaronchansunny.github.io/blog/2014/11/12/install-octopress/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github搭建Octopress博客&lt;/a&gt;，我们可以搭建Octopress。但是如果我们需要在一台新机器上部署Github上已有的Octopress，需要怎么做呢？步骤上大体一致。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;克隆Github代码&quot;&gt;&lt;a href=&quot;#克隆Github代码&quot; class=&quot;headerlink&quot; title=&quot;克隆Github代码&quot;&gt;&lt;/a&gt;克隆Github代码&lt;/h2&gt;&lt;p&gt;分别克隆Github下&lt;strong&gt;source&lt;/strong&gt;分支和&lt;strong&gt;master&lt;/strong&gt;分支到本地。&lt;/p&gt;
@@ -442,7 +442,7 @@ $ bundle install
     <link href="http://yoursite.com/2014/11/28/input-method-switch-key/"/>
     <id>http://yoursite.com/2014/11/28/input-method-switch-key/</id>
     <published>2014-11-28T01:34:41.000Z</published>
-    <updated>2016-03-05T04:20:20.904Z</updated>
+    <updated>2016-03-05T05:47:11.166Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;最近打算从Eclipse迁移到Android Studio（以下简称AS），这是Android开发的趋势。在AS中，代码自动补全的快捷键是&lt;code&gt;ctrl+space&lt;/code&gt;，和Windows系统下切换输入法的快捷键冲突。既然这样，就更改输入法快捷键吧。当然方法很多，最方便的方法是直接修改注册表文件。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;过程&quot;&gt;&lt;a href=&quot;#过程&quot; class=&quot;headerlink&quot; title=&quot;过程&quot;&gt;&lt;/a&gt;过程&lt;/h2&gt;&lt;ul&gt;
@@ -478,7 +478,7 @@ $ bundle install
     <link href="http://yoursite.com/2014/11/21/setup-ssh2-web-project-by-maven/"/>
     <id>http://yoursite.com/2014/11/21/setup-ssh2-web-project-by-maven/</id>
     <published>2014-11-21T06:46:21.000Z</published>
-    <updated>2016-03-05T04:20:20.397Z</updated>
+    <updated>2016-03-05T05:47:11.166Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;为了熟悉Spring+Struts2+Hibernate工程（SSH2）各个框架的配置，一直想自己手动搭个SSH2。但每次一想到那么多jar包依赖，总提不起勇气，相信这也是很多刚学习JavaWeb的朋友所困扰的问题。对于Maven真是久仰大名，最近拜读了许晓斌前辈《Maven实战》这本书，真是有种相见恨晚的感觉。总之，Maven为我们建立了一套标准，并提供中央仓库让我们能在线获取第三方jar包资源，只要我们遵循这个标准，构建将变得如此轻松。使用Maven构建的最佳实践是使用命令行，但对于Java开发人员，Eclipse等IDE工具虽然在构建上具有先天不足，但在编码上确实能大大提高效率。幸运的是，Eclipse现在已经集成m2eclipse插件，提供Maven工程创建和管理。那就现学现卖吧~就让我们一起在Eclipse下用Maven搭建一个SSH2工程示例。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;安装Maven&quot;&gt;&lt;a href=&quot;#安装Maven&quot; class=&quot;headerlink&quot; title=&quot;安装Maven&quot;&gt;&lt;/a&gt;安装Maven&lt;/h2&gt;&lt;p&gt;安装Maven很简单，首先访问Maven官网，选择最新版本下载，安装过程一路&lt;code&gt;next&lt;/code&gt;即可。&lt;br&gt;安装结束后，添加Maven安装目录到系统路径PATH。&lt;br&gt;运行&lt;code&gt;sysdm.cpl&lt;/code&gt;打开系统属性：&lt;/p&gt;
@@ -618,7 +618,7 @@ mysql&amp;gt; select * from p_user;
     <link href="http://yoursite.com/2014/11/20/add-blog-copyright/"/>
     <id>http://yoursite.com/2014/11/20/add-blog-copyright/</id>
     <published>2014-11-20T03:03:51.000Z</published>
-    <updated>2016-03-05T04:20:20.346Z</updated>
+    <updated>2016-03-05T05:47:11.165Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;相信大多数人开博客的目的在于分享，在分享的过程中发现问题，共同进步。但是自己辛辛苦苦码字得到的一篇文章，还是希望能够打上自己的标签，这就涉及到如何给自己博客添加版权信息的问题。其实，Octopress高度模块化的设计理念，让我们很容易对自己的博客进行定制。我们要做的就是在响应模块，添加版权信息即可。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;添加自定义样式&quot;&gt;&lt;a href=&quot;#添加自定义样式&quot; class=&quot;headerlink&quot; title=&quot;添加自定义样式&quot;&gt;&lt;/a&gt;添加自定义样式&lt;/h2&gt;&lt;p&gt;Octopress所有样式都保存在&lt;code&gt;$OCTOPRESS_HOME/sass&lt;/code&gt;目录下。在有自定义需求的地方，Octopress都为我们准备了&lt;code&gt;custom&lt;/code&gt;子目录，例如：&lt;br&gt;&lt;code&gt;$OCTOPRESS_HOME/sass/custom&lt;/code&gt;&lt;br&gt;&lt;code&gt;$OCTOPRESS_HOME/source/_includes/custom&lt;/code&gt;&lt;br&gt;现在，我们为版权信息模板添加一个自定义样式。&lt;br&gt;打开&lt;code&gt;$OCTOPRESS_HOME/sass/custom/_styles.scss&lt;/code&gt;文件，添加如下内容：&lt;/p&gt;
@@ -651,7 +651,7 @@ mysql&amp;gt; select * from p_user;
     <link href="http://yoursite.com/2014/11/19/session-shared-based-on-memcached/"/>
     <id>http://yoursite.com/2014/11/19/session-shared-based-on-memcached/</id>
     <published>2014-11-19T08:27:56.000Z</published>
-    <updated>2016-03-05T04:20:20.213Z</updated>
+    <updated>2016-03-05T05:47:11.163Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;h3 id=&quot;Session是什么&quot;&gt;&lt;a href=&quot;#Session是什么&quot; class=&quot;headerlink&quot; title=&quot;Session是什么&quot;&gt;&lt;/a&gt;Session是什么&lt;/h3&gt;&lt;p&gt;用户访问服务器资源主要分成两类，一类是无状态访问，例如请求一张图片。另一类是有状态访问，这种情况下，服务器需要记录追踪用户状态，并根据用户所处状态做出不同响应，典型的例子是购物车。Session的作用就是在Web服务器上保持用户的状态信息。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;Tomcat集群为什么需要Session共享&quot;&gt;&lt;a href=&quot;#Tomcat集群为什么需要Session共享&quot; class=&quot;headerlink&quot; title=&quot;Tomcat集群为什么需要Session共享&quot;&gt;&lt;/a&gt;Tomcat集群为什么需要Session共享&lt;/h3&gt;&lt;p&gt;当客户端访问Tomcat集群时，所有的请求将被Nginx拦截，由Nginx做负载均衡后转发给后台真实Tomcat。按照这个流程就可能出现一个问题，当用户进行页面刷新或跳转时，每次请求将被转发给不同的Tomcat处理，这样就会造成Session的不同步。举个简单的栗子，例如当用户往购物车添加商品时，兴高采烈地准备买单了，当他跳转到付款页面却发现购物车被清空了，这就是Session丢失的典型栗子。因此，我们需要为集群环境做Session同步。&lt;/p&gt;
@@ -776,7 +776,7 @@ tcp        0      0 :::11211                    :::*                        LIST
     <link href="http://yoursite.com/2014/11/19/tomcat-cluster-benchmark-test/"/>
     <id>http://yoursite.com/2014/11/19/tomcat-cluster-benchmark-test/</id>
     <published>2014-11-19T03:00:47.000Z</published>
-    <updated>2016-03-05T04:20:20.259Z</updated>
+    <updated>2016-03-05T05:47:11.164Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;在&lt;a href=&quot;http://aaronchansunny.github.io/blog/2014/11/18/nginx-tomcat-cluster/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;使用Nginx反向代理Tomcat并实现负载均衡&lt;/a&gt;博客中，我们使用Nginx搭建Tomcat简单集群，并实现负载均衡。之所有进行Web服务器集群，就是希望能够达到水平扩展的目的。当集群中新增新的Web服务器，理论上整个Web应用的并发量就能得到线性增长。现在以简单的注册为例，来验证我们之前的集群方案是否有效。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;测试环境&quot;&gt;&lt;a href=&quot;#测试环境&quot; class=&quot;headerlink&quot; title=&quot;测试环境&quot;&gt;&lt;/a&gt;测试环境&lt;/h2&gt;&lt;p&gt;1.1XX.XX.XX.181&lt;br&gt;运行Nginx、Tomcat和MySQL&lt;br&gt;2.1XX.XX.XX.182&lt;br&gt;运行Tomcat&lt;br&gt;1XX.XX.XX.183&lt;br&gt;运行Tomcat&lt;br&gt;服务器环境：&lt;/p&gt;
@@ -1016,7 +1016,7 @@ all     55.73      0.00     21.88      0.00      0.00     22.40
     <link href="http://yoursite.com/2014/11/19/apache-benchmark-test/"/>
     <id>http://yoursite.com/2014/11/19/apache-benchmark-test/</id>
     <published>2014-11-19T02:14:38.000Z</published>
-    <updated>2016-03-05T04:20:20.168Z</updated>
+    <updated>2016-03-05T05:47:11.162Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;当Web应用正式上线之前，对Web服务器性能的预估是必不可少的。为了让运维人员对服务器的性能瓶颈有基本预估，需要对服务器进行压力测试。&lt;br&gt;工欲善其事，必先利其器。Apache Benchmark（以下简称AB）作为Apache旗下的Http Server性能评测工具，使用方法非常简单，并且在高并发的情况下并不会占用太多系统资源。此外，AB可以直接在Web服务器本地发起测试请求。这点至关重要，因为我们希望测试的是服务器处理时间，而不包含数据的网络传输时间以及用户PC本地的计算时间。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;测试环境&quot;&gt;&lt;a href=&quot;#测试环境&quot; class=&quot;headerlink&quot; title=&quot;测试环境&quot;&gt;&lt;/a&gt;测试环境&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[root@chenllcentos ~]# cat /etc/redhat-release 
@@ -1146,7 +1146,7 @@ Options are:
     <link href="http://yoursite.com/2014/11/18/nginx-tomcat-cluster/"/>
     <id>http://yoursite.com/2014/11/18/nginx-tomcat-cluster/</id>
     <published>2014-11-18T07:45:17.000Z</published>
-    <updated>2016-03-05T04:20:19.993Z</updated>
+    <updated>2016-03-05T05:47:11.161Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;随着Web应用所面对的用户群不断壮大，很快就会出现Tomcat的性能瓶颈问题。&lt;br&gt;此时面临着两种方案选择：&lt;br&gt;1.升级主机硬件配置；&lt;br&gt;2.搭建Tomcat集群。&lt;br&gt;如果选择方案1，显然将面临高成本问题。面对类似问题，通常是采取方案2的做法。单机运行Tomcat所需要的服务器硬件配置要求并不高，更重要的是可以根据需求持续增加集群规模，以达到更高的性能要求。这种情况下，方案1是不可取的，也是无法办到的。&lt;br&gt;既然需要搭建Tomcat集群，那么就需要专门的工具负责调度，Nginx就是这类工具的一种。Nginx是一款高性能的HTTP和反向代理服务器。字面上理解这句话有两层含义：&lt;br&gt;1.Nginx是一个Web服务器，在这点上和Tomcat没有任何区别；&lt;br&gt;2.Nginx还具有反向代理功能，Web服务器集群就是在此功能基础上实现的。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;反向代理&quot;&gt;&lt;a href=&quot;#反向代理&quot; class=&quot;headerlink&quot; title=&quot;反向代理&quot;&gt;&lt;/a&gt;反向代理&lt;/h2&gt;&lt;p&gt;反向代理（Reverse Proxy）方式是指以代理服务器来接受Internet上的连接请求，然后将请求转发给内部网络上的服务器；并将从服务器上得到的结果返回给Internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。以上定义来自互联网。反向代理拓扑结构如图所示：&lt;/p&gt;
@@ -1440,7 +1440,7 @@ http
     <link href="http://yoursite.com/2014/11/18/tomcat-install-linux/"/>
     <id>http://yoursite.com/2014/11/18/tomcat-install-linux/</id>
     <published>2014-11-18T05:43:26.000Z</published>
-    <updated>2016-03-05T04:20:20.085Z</updated>
+    <updated>2016-03-05T05:47:11.162Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;当考虑部署JavaWeb项目时，选择Linux服务器是大多数人的选择。Web应用必须在Web容器中运行，目前对于Web容器的选择有很多：Apache、Tomcat、IIS、Nginx和GWS等。其中Tomcat可以说是为JavaWeb应用量身定做的Web容器，又因为其轻巧并且功能强大，往往是中小型项目最好的选择。如果运用代理服务器做Tomcat集群，甚至能轻松搭建出具有高并发性能的大型Web应用。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;安装准备&quot;&gt;&lt;a href=&quot;#安装准备&quot; class=&quot;headerlink&quot; title=&quot;安装准备&quot;&gt;&lt;/a&gt;安装准备&lt;/h2&gt;&lt;p&gt;安装环境：  &lt;/p&gt;
@@ -1606,7 +1606,7 @@ iptables：应用防火墙规则：                                 [确定]
     <link href="http://yoursite.com/2014/11/17/delete-remote-repo-file/"/>
     <id>http://yoursite.com/2014/11/17/delete-remote-repo-file/</id>
     <published>2014-11-17T07:58:33.000Z</published>
-    <updated>2016-03-05T04:20:19.780Z</updated>
+    <updated>2016-03-05T05:47:11.158Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;假设这么一个场景：如果已经提交某文件到远程仓库，但现在本地已经删除该文件了。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;这种情况下，输入&lt;code&gt;git status&lt;/code&gt;将提示以下信息：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ git status
@@ -1646,7 +1646,7 @@ nothing to commit, working directory clean
     <link href="http://yoursite.com/2014/11/17/rake-deploy-error-non-fast-forward/"/>
     <id>http://yoursite.com/2014/11/17/rake-deploy-error-non-fast-forward/</id>
     <published>2014-11-17T06:55:51.000Z</published>
-    <updated>2016-03-05T04:20:19.925Z</updated>
+    <updated>2016-03-05T05:47:11.160Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;今天在Octopress进行博客提交时，出现错误：  &lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;To git@github.com:aaronchansunny/aaronchansunny.github.com.git
@@ -1687,7 +1687,7 @@ $ rake deploy
     <link href="http://yoursite.com/2014/11/17/git-goagent/"/>
     <id>http://yoursite.com/2014/11/17/git-goagent/</id>
     <published>2014-11-17T03:06:44.000Z</published>
-    <updated>2016-03-05T04:20:19.852Z</updated>
+    <updated>2016-03-05T05:47:11.159Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;最近使用Git提交代码到仓库，经常报权限错误。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ git push origin source
@@ -1754,7 +1754,7 @@ $ git config --global --unset https.proxy
     <link href="http://yoursite.com/2014/11/16/sublime-plugin-markdown-preview/"/>
     <id>http://yoursite.com/2014/11/16/sublime-plugin-markdown-preview/</id>
     <published>2014-11-15T16:10:21.000Z</published>
-    <updated>2016-03-05T04:20:19.706Z</updated>
+    <updated>2016-03-05T05:47:11.158Z</updated>
     
     <content type="html">&lt;h2 id=&quot;引子&quot;&gt;&lt;a href=&quot;#引子&quot; class=&quot;headerlink&quot; title=&quot;引子&quot;&gt;&lt;/a&gt;引子&lt;/h2&gt;&lt;p&gt;关于文本编辑器，一直热衷于Sublime Text（以下简称ST）。不仅仅因为它清爽的界面，更离不开它强大的插件支持。最近用Octpress搭建个人博客，开始学习Markdown标记语言。理所当然，马上想到用ST完成日常Markdown编写。随便打开一个Markdown文件，发现ST并不支持语法高亮。网上搜了下，找到了Markdown Preview，也就是本文的主角。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;##Markdown Preview安装&lt;br&gt;使用Package Control安装Markdown Preview非常简单。打开ST，按下组合键打开控制台:&lt;/p&gt;
